@@ -1,0 +1,1481 @@
+<html lang="vi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gánh Rong - Game của người Việt</title>
+    <meta name="description" content="Gánh Rong - Game của người Việt">
+    <link rel="icon" href="https://picsum.photos/id/88/32/32" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="css/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-black-premium: #080C14;
+            --color-white-premium: #FAFBFF;
+            --color-blue-vibrant: #2563EB;
+            --color-blue-dark: #0D4FC9;
+            --color-blue-light: #CFDFFF;
+            --color-orange-vibrant: #F97316;
+            --color-orange-dark: #C2410C;
+            --color-purple-luxe: #9333EA;
+            --color-purple-dark: #581C87;
+            --color-green-success: #16A34A;
+            --color-red-alert: #DC2626;
+            --color-text-main: #080C14;
+            --color-text-secondary: #334155;
+            --color-text-info: #64748B;
+            --color-dark-bg-luxe: #030711;
+            --color-dark-text-main: #FAFBFF;
+            --color-dark-text-secondary: #CBD5E1;
+            --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            --ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: var(--color-text-main);
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Chakra Petch', sans-serif;
+            color: var(--color-black-premium);
+            font-weight: 800;
+        }
+        .container { max-width: 1400px; padding-left: 2rem; padding-right: 2rem; margin-left: auto; margin-right: auto; }
+        .back-to-top {
+            position: fixed; bottom: 32px; right: 32px; z-index: 9999;
+            background: linear-gradient(135deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
+            border: none; border-radius: 50%; width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            cursor: pointer; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .back-to-top.show { opacity: 1; pointer-events: auto; }
+        .back-to-top svg { width: 28px; height: 28px; fill: #fff; }
+        @media (max-width: 640px) {
+            .back-to-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
+            .back-to-top svg { width: 22px; height: 22px; }
+        }
+        .bg-biomorphic-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-size: cover; background-blend-mode: overlay; opacity: 0.03;
+        }
+        .glass-effect {
+            background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        .magnetic-hover { transition: transform 0.3s var(--ease-out-cubic); will-change: transform; }
+        .magnetic-hover:hover { transform: scale(1.05) translateZ(0); }
+        .cta-button {
+            background: linear-gradient(90deg, var(--color-blue-vibrant), var(--color-purple-luxe), var(--color-orange-vibrant));
+            background-size: 200% 200%; animation: gradient-shift 5s ease infinite;
+            color: var(--color-white-premium); border: none; padding: 1rem 2.5rem; border-radius: 9999px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            transition: all 0.3s var(--ease-out-expo); box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+            position: relative; overflow: hidden; z-index: 1;
+        }
+        .cta-button:hover { background-position: 100% 0%; box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4); transform: translateY(-3px); }
+        .cta-button:active { transform: translateY(1px); }
+        .cta-button::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.1); opacity: 0; transition: opacity 0.3s var(--ease-out-cubic); z-index: -1;
+        }
+        .cta-button:hover::after { opacity: 1; }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+        .text-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
+        .text-reveal.aos-animate { opacity: 1; transform: translateY(0); }
+        .depth-element { position: relative; perspective: 1000px; }
+        .depth-element-inner {
+            transform: translateZ(0); transition: transform 0.5s var(--ease-in-out-sine), box-shadow 0.5s var(--ease-in-out-sine);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 0 0 rgba(37, 99, 235, 0);
+        }
+        .depth-element:hover .depth-element-inner {
+            transform: translateZ(20px); box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 0 20px 5px rgba(37, 99, 235, 0.4);
+        }
+        .neo-brutal-card {
+            border: 3px solid var(--color-black-premium); background-color: var(--color-white-premium);
+            box-shadow: 8px 8px 0px var(--color-blue-vibrant); transition: all 0.3s var(--ease-out-cubic);
+        }
+        .neo-brutal-card:hover { box-shadow: 12px 12px 0px var(--color-orange-vibrant); transform: translate(-4px, -4px); }
+        input[type="email"], input[type="text"] {
+            border: 2px solid var(--color-text-info); background-color: var(--color-white-premium);
+            color: var(--color-black-premium);
+        }
+        input[type="email"]:focus, input[type="text"]:focus {
+            border-color: var(--color-blue-vibrant); outline: none; box-shadow: 0 0 0 3px var(--color-blue-light);
+        }
+        button:focus { outline: 3px solid var(--color-orange-vibrant); outline-offset: 2px; }
+        .text-main-contrast { color: var(--color-black-premium); }
+        .bg-dark-contrast { background-color: var(--color-dark-bg-luxe); }
+        .text-dark-on-light-contrast { color: var(--color-text-main); }
+        .text-light-on-dark-contrast { color: var(--color-dark-text-main); }
+        .mobile-menu-open { display: flex !important; }
+        .accordion-content { transition: max-height 0.5s var(--ease-in-out-sine); }
+    </style>
+
+                <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
+                <meta name="mobile-web-app-capable" content="yes">
+                <meta name="apple-mobile-web-app-capable" content="yes">
+                <meta name="apple-mobile-web-app-title" content="Tạo trang web">
+                <meta name="theme-color" content="#ffffff">
+                <link rel="apple-touch-icon" href="images/192.png">
+            
+                <style>
+                    /* Floating Install Button */
+                    .install-button {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        background: #ffffff;
+                          color: #000000;
+                        border: none;
+                        border-radius: 50px;
+                        padding: 12px 24px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        z-index: 9999;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        animation: slideIn 0.5s ease-out;
+                    }
+                    
+                    .install-button:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+                    }
+                    
+                    .install-button:active {
+                        transform: translateY(0);
+                    }
+                    
+                    @keyframes slideIn {
+                        from {
+                            transform: translateY(100px);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    /* iOS Install Banner */
+                    .ios-banner {
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background: rgba(255, 255, 255, 0.98);
+                        backdrop-filter: blur(10px);
+                        border-top: 1px solid #e0e0e0;
+                        padding: 12px;
+                        z-index: 9998;
+                        animation: slideUp 0.3s ease-out;
+                    }
+                    
+                    .ios-banner-content {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                    
+                    .ios-icon {
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 12px;
+                    }
+                    
+                    .ios-text {
+                        flex: 1;
+                    }
+                    
+                    .ios-title {
+                        font-weight: 600;
+                        font-size: 16px;
+                        color: #333;
+                    }
+                    
+                    .ios-subtitle {
+                        font-size: 14px;
+                        color: #666;
+                        margin-top: 2px;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+                    
+                    .ios-close {
+                        background: none;
+                        border: none;
+                        font-size: 24px;
+                        color: #999;
+                        cursor: pointer;
+                        padding: 4px;
+                    }
+                    
+                    @keyframes slideUp {
+                        from {
+                            transform: translateY(100%);
+                        }
+                        to {
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    /* Success animation */
+                    .install-success {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(76, 175, 80, 0.95);
+                        color: white;
+                        padding: 20px 40px;
+                        border-radius: 12px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                        animation: successPop 0.5s ease-out;
+                        z-index: 10000;
+                    }
+                    
+                    @keyframes successPop {
+                        0% {
+                            transform: translate(-50%, -50%) scale(0);
+                            opacity: 0;
+                        }
+                        50% {
+                            transform: translate(-50%, -50%) scale(1.1);
+                        }
+                        100% {
+                            transform: translate(-50%, -50%) scale(1);
+                            opacity: 1;
+                        }
+                    }
+                </style>
+            <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-8{bottom:-2rem}.-right-8{right:-2rem}.bottom-4{bottom:1rem}.left-0{left:0px}.left-4{left:1rem}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-6{top:1.5rem}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-32{height:8rem}.h-64{height:16rem}.h-auto{height:auto}.h-full{height:100%}.max-h-0{max-height:0px}.min-h-screen{min-height:100vh}.w-32{width:8rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.-rotate-1{--tw-rotate:-1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-95{--tw-bg-opacity:0.95}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-light{font-weight:300}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:rotate-1:hover{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:rotate-0{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:rotate-12{--tw-rotate:12deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-150{--tw-scale-x:1.5;--tw-scale-y:1.5;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-20{opacity:0.2}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:items-start{align-items:flex-start}.md\:p-12{padding:3rem}.md\:text-left{text-align:left}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-8xl{font-size:6rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:p-8{padding:2rem}}</style><style id="editing-styles">
+      [data-editable] {
+        outline: 2px dashed #FF9800 !important;
+        cursor: text !important;
+        position: relative !important;
+      }
+      
+      [data-editable]:hover {
+        background-color: rgba(255,152,0,0.1) !important;
+      }
+      
+      [data-image-editable] {
+        outline: 2px dashed #4CAF50 !important;
+        cursor: pointer !important;
+        position: relative !important;
+      }
+      
+      [data-image-editable]:hover {
+        outline-color: #2E7D32 !important;
+        filter: brightness(1.1) !important;
+      }
+      
+      [data-color-editable] {
+        outline: 2px dashed #2196F3 !important;
+        cursor: pointer !important;
+        position: relative !important;
+      }
+      
+      [data-color-editable]:hover {
+        outline-color: #1976D2 !important;
+        opacity: 0.8 !important;
+      }
+    </style>
+                <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
+                <meta name="mobile-web-app-capable" content="yes">
+                <meta name="apple-mobile-web-app-capable" content="yes">
+                <meta name="apple-mobile-web-app-title" content="Tạo trang web">
+                <meta name="theme-color" content="#ffffff">
+                <link rel="apple-touch-icon" href="images/192.png">
+            
+                <style>
+                    /* Floating Install Button */
+                    .install-button {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        background: #ffffff;
+                          color: #000000;
+                        border: none;
+                        border-radius: 50px;
+                        padding: 12px 24px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        z-index: 9999;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        animation: slideIn 0.5s ease-out;
+                    }
+                    
+                    .install-button:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+                    }
+                    
+                    .install-button:active {
+                        transform: translateY(0);
+                    }
+                    
+                    @keyframes slideIn {
+                        from {
+                            transform: translateY(100px);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    /* iOS Install Banner */
+                    .ios-banner {
+                        position: fixed;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background: rgba(255, 255, 255, 0.98);
+                        backdrop-filter: blur(10px);
+                        border-top: 1px solid #e0e0e0;
+                        padding: 12px;
+                        z-index: 9998;
+                        animation: slideUp 0.3s ease-out;
+                    }
+                    
+                    .ios-banner-content {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                    
+                    .ios-icon {
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 12px;
+                    }
+                    
+                    .ios-text {
+                        flex: 1;
+                    }
+                    
+                    .ios-title {
+                        font-weight: 600;
+                        font-size: 16px;
+                        color: #333;
+                    }
+                    
+                    .ios-subtitle {
+                        font-size: 14px;
+                        color: #666;
+                        margin-top: 2px;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+                    
+                    .ios-close {
+                        background: none;
+                        border: none;
+                        font-size: 24px;
+                        color: #999;
+                        cursor: pointer;
+                        padding: 4px;
+                    }
+                    
+                    @keyframes slideUp {
+                        from {
+                            transform: translateY(100%);
+                        }
+                        to {
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    /* Success animation */
+                    .install-success {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(76, 175, 80, 0.95);
+                        color: white;
+                        padding: 20px 40px;
+                        border-radius: 12px;
+                        font-size: 18px;
+                        font-weight: 600;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                        animation: successPop 0.5s ease-out;
+                        z-index: 10000;
+                    }
+                    
+                    @keyframes successPop {
+                        0% {
+                            transform: translate(-50%, -50%) scale(0);
+                            opacity: 0;
+                        }
+                        50% {
+                            transform: translate(-50%, -50%) scale(1.1);
+                        }
+                        100% {
+                            transform: translate(-50%, -50%) scale(1);
+                            opacity: 1;
+                        }
+                    }
+                </style>
+            </head>
+<body class="antialiased text-dark-on-light-contrast" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="0">
+
+    <header class="sticky top-0 z-50 py-4 glass-effect aos-init aos-animate" data-aos="fade-down" data-aos-duration="1000">
+        <nav class="container flex items-center justify-between relative">
+            <div class="flex items-center min-w-0">
+                <a href="#" class="flex items-center min-w-0">
+                    <img src="images/logoganhrong.png" alt="Logo Gánh Rong" class="w-12 h-12 rounded-full border-2 border-blue-vibrant bg-white shadow mr-3">
+                </a>
+                <span class="gradient-text-header text-2xl md:text-3xl font-bold tracking-tight" style="background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-purple-luxe)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GÁNH RONG</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 ml-auto">
+                <a href="#about" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Về Game</a>
+                <a href="#features" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Điểm Nổi Bật</a>
+                <a href="#gallery" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Thư Viện</a>
+                <a href="#pre-register" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Đăng Ký Trước</a>
+            </div>
+            <div class="flex items-center space-x-2 ml-4">
+                <button id="sound-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Bật/Tắt âm thanh">
+                    <svg id="sound-on" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/></svg>
+                    <svg id="sound-off" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><line x1="21" y1="3" x2="3" y2="21" stroke="red" stroke-width="2"/></svg>
+                </button>
+                <button id="mode-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Chuyển chế độ sáng/tối">
+                    <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="currentColor"/></svg>
+                    <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-blue-100 transition text-3xl focus:outline-none z-20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="fixed inset-0 bg-dark-bg-luxe bg-opacity-95 flex-col items-center justify-center space-y-8 text-dark-text-main text-2xl md:hidden transition-opacity duration-300 opacity-0 z-50 hidden">
+                <button class="absolute top-6 right-6 text-dark-text-main text-4xl focus:outline-none" id="close-mobile-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <a href="#about" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Về Game</a>
+                <a href="#features" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">Điểm Nổi Bật</a>
+                <a href="#gallery" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">Thư Viện</a>
+                <a href="#pre-register" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">Đăng Ký Trước</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-br from-blue-vibrant to-purple-luxe">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <!-- Đã loại bỏ div lỗi style background-image ở hero section -->
+
+        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-black aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight text-shadow-glow text-black" style="color:#000; text-shadow: 0 0 15px var(--color-orange-vibrant);">
+                    GÁNH RONG
+                </h1>
+                <p class="text-lg font-semibold mb-2 text-black" style="color:#000">GAME GÁNH RONG 3D VIỆT NAM</p>
+                <p class="text-2xl md:text-3xl mb-8 leading-relaxed font-light text-black text-reveal" style="color:#000" data-aos-delay="200">
+                    Game đậm chất Việt Nam những năm 90.
+                </p>
+                <div data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">
+                    <a href="#pre-register" class="cta-button magnetic-hover">
+                        ĐĂNG KÝ NGAY
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center items-center aos-init aos-animate" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <div class="neo-brutal-card p-4 lg:p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-in-out-sine">
+                    <img src="https://picsum.photos/id/66/800/600" alt="Sương Chiều Chibi Character" class="w-full h-auto rounded-lg shadow-2xl relative z-10 border-4 border-orange-vibrant" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
+                    <div class="absolute inset-0 bg-purple-luxe opacity-20 transform -rotate-3 transition-transform duration-500 ease-in-out-sine z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="depth-element aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000">
+                <div class="depth-element-inner neo-brutal-card p-6 lg:p-8 relative z-10 bg-white">
+                    <h2 class="text-5xl font-extrabold mb-6 text-orange-vibrant leading-tight">
+                        GAME HÀNG RONG VIỆT NAM MANG PHONG CÁCH CHIBI
+                    </h2>
+                    <p class="text-xl leading-relaxed text-text-secondary text-reveal mb-4">
+                        Gánh Rong là cánh cửa thời gian đưa bạn trở lại không gian Việt Nam những năm 90, với những con hẻm nhỏ, mái ngói rêu phong và ký ức tuổi thơ tươi đẹp.
+                    </p>
+                    <p class="text-lg leading-relaxed text-text-info text-reveal">
+                        Trong thế giới chibi đầy màu sắc, bạn sẽ gặp gỡ những nhân vật đáng yêu, trải nghiệm những câu chuyện ấm áp và khám phá những bí mật ẩn giấu. Chuẩn bị cho một cuộc phiêu lưu đầy hoài niệm và kỳ diệu!
+                    </p>
+                    <div class="absolute top-4 right-4 text-6xl text-purple-luxe opacity-10">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="relative aos-init aos-animate" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <img src="https://picsum.photos/id/250/800/600" alt="Retro Vietnam Scene" class="w-full h-auto rounded-lg shadow-2xl neo-brutal-card transform -rotate-2 hover:rotate-1 transition-transform duration-500 ease-in-out-sine">
+                <div class="absolute top-0 left-0 w-full h-full bg-blue-vibrant opacity-10 transform -rotate-2 z-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000; text-shadow: 0 0 10px var(--color-blue-vibrant);">
+                    ĐIỂM NỔI BẬT KHÓ CƯỠNG
+                </h2>
+                <p class="text-xl text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
+                    Sự kết hợp hoàn hảo giữa hoài niệm và trải nghiệm hiện đại.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="depth-element-inner relative z-10">
+                        <i class="fas fa-hat-wizard text-6xl text-purple-luxe mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Thế Giới Chibi Sống Động</h3>
+                        <p class="text-lg text-dark-text-secondary">Đồ họa chibi được vẽ tay tỉ mỉ, tái hiện chân thực khung cảnh Việt Nam xưa với nét đáng yêu độc đáo.</p>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
+                    </div>
+                </div>
+                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="depth-element-inner relative z-10">
+                        <i class="fas fa-map-marked-alt text-6xl text-orange-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Cốt Truyện Đậm Chất Việt</h3>
+                        <p class="text-lg text-dark-text-secondary">Phiêu lưu qua những câu chuyện gắn liền với văn hóa, truyền thuyết và cuộc sống thường ngày của người Việt.</p>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-luxe opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
+                    </div>
+                </div>
+                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                    <div class="depth-element-inner relative z-10">
+                        <i class="fas fa-gamepad text-6xl text-blue-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Lối Chơi Sáng Tạo</h3>
+                        <p class="text-lg text-dark-text-secondary">Kết hợp yếu tố nhập vai, giải đố và tương tác cộng đồng trong một trải nghiệm mới mẻ.</p>
+                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-orange-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
+                    THƯ VIỆN HÌNH ẢNH
+                </h2>
+                <p class="text-xl text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
+                    Những khoảnh khắc đẹp lung linh của Sương Chiều.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/157/600/400" alt="Game Screenshot 1" class="w-full h-64 object-cover rounded-lg transform rotate-1 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-blue-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Thế giới mở</div>
+                    </div>
+                </div>
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/196/600/400" alt="Game Screenshot 2" class="w-full h-64 object-cover rounded-lg transform -rotate-1 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-purple-luxe opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Nhân vật Chibi</div>
+                    </div>
+                </div>
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/108/600/400" alt="Game Screenshot 3" class="w-full h-64 object-cover rounded-lg transform rotate-2 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-orange-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Khung cảnh 90s</div>
+                    </div>
+                </div>
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/207/600/400" alt="Game Screenshot 4" class="w-full h-64 object-cover rounded-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-blue-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">NPC độc đáo</div>
+                    </div>
+                </div>
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/237/600/400" alt="Game Screenshot 5" class="w-full h-64 object-cover rounded-lg transform rotate-1 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-purple-luxe opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Hệ thống nhiệm vụ</div>
+                    </div>
+                </div>
+                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+                    <div class="depth-element-inner">
+                        <img src="https://picsum.photos/id/1066/600/400" alt="Game Screenshot 6" class="w-full h-64 object-cover rounded-lg transform -rotate-1 group-hover:rotate-0 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-orange-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-4 left-4 text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tương tác thú vị</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pre-register" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10 text-center">
+            <h2 class="text-5xl font-extrabold mb-8 leading-tight text-black text-reveal" style="color:#000; text-shadow: 0 0 10px var(--color-orange-vibrant);">
+                ĐĂNG KÝ TRƯỚC NHẬN TIN MỚI NHẤT!
+            </h2>
+            <p class="text-xl text-black mb-12 text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
+                Hãy là người đầu tiên biết khi Sương Chiều chính thức ra mắt và nhận những phần quà độc quyền!
+            </p>
+
+            <div class="max-w-xl mx-auto neo-brutal-card bg-dark-bg-luxe p-8 md:p-12 glass-effect depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="depth-element-inner">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="email-prereg" class="sr-only">Email của bạn</label>
+                            <input type="email" id="email-prereg" name="email" placeholder="Địa chỉ Email của bạn" required="" class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium);">
+                        </div>
+                        <div>
+                            <button type="submit" class="cta-button w-full">
+                                ĐĂNG KÝ NGAY
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-sm text-dark-text-secondary mt-6">
+                        Chúng tôi cam kết bảo mật thông tin cá nhân của bạn.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 flex justify-center items-center space-x-6 text-dark-text-main text-xl">
+                <div class="flex items-center aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="fas fa-users mr-3 text-orange-vibrant text-3xl"></i>
+                    <span class="font-bold">Hơn </span> <span class="ml-1 font-bold text-orange-vibrant text-2xl" id="prereg-count">10,000</span> <span class="ml-1 font-bold">người đã đăng ký!</span>
+                </div>
+                <div class="flex items-center aos-init aos-animate" data-aos="zoom-in" data-aos-delay="700">
+                    <i class="fas fa-clock mr-3 text-blue-vibrant text-3xl"></i>
+                    <span class="font-bold">Sắp ra mắt!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold mb-6 text-main-contrast leading-tight text-reveal">
+                    CÂU HỎI THƯỜNG GẶP
+                </h2>
+                <p class="text-xl text-text-secondary text-reveal aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    Mọi thắc mắc của bạn về Sương Chiều sẽ được giải đáp tại đây.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
+                        <span>Gánh Rong là thể loại game gì?</span>
+                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0" style="">
+                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
+                            Gánh Rong là một tựa game nhập vai phiêu lưu với đồ họa chibi, lấy bối cảnh Việt Nam thập niên 90. Game kết hợp các yếu tố buôn bán và tương tác cộng đồng và NFT
+                        </p>
+                    </div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
+                        <span>Game sẽ ra mắt trên nền tảng nào?</span>
+                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0" style="">
+                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
+                            Hiện tại, Sương Chiều dự kiến ra mắt trên các nền tảng PC và  di động (iOS và Android). Thông tin chi tiết sẽ được công bố sau.
+                        </p>
+                    </div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="false">
+                        <span>Làm sao để đăng ký trước?</span>
+                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content overflow-hidden max-h-0" style="">
+                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
+                            Bạn có thể đăng ký trước ngay trên trang web này bằng cách điền địa chỉ email của mình vào biểu mẫu "Đăng Ký Trước Nhận Tin Mới Nhất!" ở trên.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="progress" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
+                    TIẾN ĐỘ PHÁT TRIỂN
+                </h2>
+                <p class="text-xl text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
+                    Cập nhật mốc thời gian quan trọng trong quá trình phát triển Gánh Rong.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-2 text-blue-vibrant"><i class="fas fa-lightbulb"></i></div>
+                    <div class="font-bold text-lg mb-1">Khởi động dự án</div>
+                    <div class="text-text-secondary text-sm">01/2025</div>
+                </div>
+                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-2 text-orange-vibrant"><i class="fas fa-pencil-ruler"></i></div>
+                    <div class="font-bold text-lg mb-1">Thiết kế & Đồ họa</div>
+                    <div class="text-text-secondary text-sm">02-03/2025</div>
+                </div>
+                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-2 text-purple-luxe"><i class="fas fa-code"></i></div>
+                    <div class="font-bold text-lg mb-1">Lập trình & Phát triển</div>
+                    <div class="text-text-secondary text-sm">04-06/2025</div>
+                </div>
+                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl mb-2 text-green-success"><i class="fas fa-rocket"></i></div>
+                    <div class="font-bold text-lg mb-1">Ra mắt & Phát hành</div>
+                    <div class="text-text-secondary text-sm">Dự kiến 11/2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
+                    ĐỘI NGŨ PHÁT TRIỂN
+                </h2>
+                <p class="text-xl text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
+                    Gồm các thành viên sáng tạo và đầy nhiệt huyết!
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i.pravatar.cc/120?img=1" alt="Thành viên 1" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
+                    <div class="font-bold text-lg mb-1">Nguyễn Văn A</div>
+                    <div class="text-text-secondary text-sm mb-2">Trưởng dự án</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://i.pravatar.cc/120?img=2" alt="Thành viên 2" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
+                    <div class="font-bold text-lg mb-1">Trần Thị B</div>
+                    <div class="text-text-secondary text-sm mb-2">Thiết kế UI/UX</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://i.pravatar.cc/120?img=3" alt="Thành viên 3" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
+                    <div class="font-bold text-lg mb-1">Lê Văn C</div>
+                    <div class="text-text-secondary text-sm mb-2">Lập trình chính</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://i.pravatar.cc/120?img=4" alt="Thành viên 4" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
+                    <div class="font-bold text-lg mb-1">Phạm Thị D</div>
+                    <div class="text-text-secondary text-sm mb-2">Thiết kế đồ họa</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://i.pravatar.cc/120?img=5" alt="Thành viên 5" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
+                    <div class="font-bold text-lg mb-1">Vũ Minh E</div>
+                    <div class="text-text-secondary text-sm mb-2">Backend Developer</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://i.pravatar.cc/120?img=6" alt="Thành viên 6" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
+                    <div class="font-bold text-lg mb-1">Đặng Thị F</div>
+                    <div class="text-text-secondary text-sm mb-2">Frontend Developer</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="700">
+                    <img src="https://i.pravatar.cc/120?img=7" alt="Thành viên 7" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
+                    <div class="font-bold text-lg mb-1">Ngô Văn G</div>
+                    <div class="text-text-secondary text-sm mb-2">QA & Tester</div>
+                </div>
+                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">
+                    <img src="https://i.pravatar.cc/120?img=8" alt="Thành viên 8" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
+                    <div class="font-bold text-lg mb-1">Phan Thị H</div>
+                    <div class="text-text-secondary text-sm mb-2">Marketing & PR</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-bg-luxe py-10 relative text-dark-text-main">
+        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
+        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-dark-text-main">
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <a href="#" class="flex items-center text-3xl font-bold tracking-tight text-dark-text-main mb-4 group">
+                    <img src="images/logoganhrong.png" alt="Logo Gánh Rong" class="w-10 h-10 mr-2 rounded-full border-2 border-blue-vibrant">
+                    <span class="gradient-text-footer" style="background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-orange-vibrant)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GÁNH RONG</span>
+                </a>
+                <p class="text-dark-text-secondary text-sm">Tiếp nối hành trình, ký ức sống động.</p>
+                <div class="mt-6 flex space-x-4">
+                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <div class="text-center md:text-left mt-8 md:mt-0">
+                <h3 class="text-xl font-bold mb-4 text-dark-text-main">LIÊN KẾT NHANH</h3>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Về Gánh Rong</a></li>
+                    <li><a href="#features" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Tính Năng Game</a></li>
+                    <li><a href="#gallery" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Thư Viện Ảnh</a></li>
+                    <li><a href="#pre-register" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Đăng Ký Trước</a></li>
+                    <li><a href="#faq" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Hỗ Trợ & FAQ</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left mt-8 md:mt-0">
+                <h3 class="text-xl font-bold mb-4 text-dark-text-main">LIÊN HỆ</h3>
+                <p class="text-dark-text-secondary mb-2"><i class="fas fa-envelope mr-2 text-blue-vibrant"></i> contact@ganhronggame.vn</p>
+                <p class="text-dark-text-secondary mb-2"><i class="fas fa-phone mr-2 text-blue-vibrant"></i> +84 123 456 789</p>
+                <p class="text-dark-text-secondary"><i class="fas fa-map-marker-alt mr-2 text-blue-vibrant"></i> Đà Nẵng, Việt Nam</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-gray-700 text-center text-sm text-dark-text-secondary">
+            © 2025 Sương Chiều. Tất cả bản quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <script src="js/aos.js"></script>
+    <audio id="bg-music" src="audio/bg-music.mp3" loop></audio>
+    <script>
+        AOS.init({ duration: 1000, easing: 'ease-out-cubic', once: true, mirror: false });
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('mobile-menu-open');
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => { mobileMenu.style.opacity = '1'; }, 10);
+        });
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.style.opacity = '0';
+            setTimeout(() => { mobileMenu.classList.remove('mobile-menu-open'); mobileMenu.classList.add('hidden'); }, 300);
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (mobileMenu.classList.contains('mobile-menu-open')) {
+                    mobileMenu.style.opacity = '0';
+                    setTimeout(() => { mobileMenu.classList.remove('mobile-menu-open'); mobileMenu.classList.add('hidden'); }, 300);
+                }
+                if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                button.ariaExpanded = button.ariaExpanded === 'true' ? 'false' : 'true';
+                if (accordionContent.style.maxHeight) {
+                    accordionContent.style.maxHeight = null; icon.classList.remove('rotate-180');
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(content => {
+                        content.style.maxHeight = null; content.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                    });
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px"; icon.classList.add('rotate-180');
+                }
+            });
+        });
+        const heroBg = document.querySelector('#hero > div:nth-child(2)');
+        window.addEventListener('scroll', () => {
+            if (heroBg) { heroBg.style.transform = `translateY(${window.pageYOffset * 0.2}px)`; }
+        });
+        const preregCountElement = document.getElementById('prereg-count');
+        let currentCount = 0; const targetCount = 10000; const duration = 2000;
+        const start = performance.now();
+        function animateCount(timestamp) {
+            const progress = (timestamp - start) / duration;
+            const animatedCount = Math.min(targetCount, Math.floor(progress * targetCount));
+            preregCountElement.textContent = animatedCount.toLocaleString('en-US');
+            if (animatedCount < targetCount) { requestAnimationFrame(animateCount); }
+        }
+        requestAnimationFrame(animateCount);
+        // --- TOGGLE ÂM THANH SVG + AUTO PLAY ---
+        const soundToggle = document.getElementById('sound-toggle');
+        const soundOn = document.getElementById('sound-on');
+        const soundOff = document.getElementById('sound-off');
+        const bgMusic = document.getElementById('bg-music');
+        let isPlaying = true;
+        function updateSoundIcon() {
+            if (isPlaying) {
+                soundOn.classList.remove('hidden');
+                soundOff.classList.add('hidden');
+            } else {
+                soundOn.classList.add('hidden');
+                soundOff.classList.remove('hidden');
+            }
+        }
+        soundToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                isPlaying = true;
+            }
+            updateSoundIcon();
+        });
+        window.addEventListener('DOMContentLoaded', () => {
+            bgMusic.volume = 0.5;
+            bgMusic.play().catch(()=>{});
+            isPlaying = true;
+            updateSoundIcon();
+        });
+        // --- TOGGLE DARK/LIGHT SVG ---
+        const modeToggle = document.getElementById('mode-toggle');
+        const iconMoon = document.getElementById('icon-moon');
+        const iconSun = document.getElementById('icon-sun');
+        let isDark = false;
+        function setMode(dark) {
+            if (dark) {
+                document.body.classList.add('bg-dark-bg-luxe');
+                document.body.classList.remove('bg-white');
+                document.body.classList.add('text-dark-text-main');
+                document.body.classList.remove('text-dark-on-light-contrast');
+                iconMoon.classList.add('hidden');
+                iconSun.classList.remove('hidden');
+            } else {
+                document.body.classList.remove('bg-dark-bg-luxe');
+                document.body.classList.add('bg-white');
+                document.body.classList.remove('text-dark-text-main');
+                document.body.classList.add('text-dark-on-light-contrast');
+                iconMoon.classList.remove('hidden');
+                iconSun.classList.add('hidden');
+            }
+        }
+        modeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            setMode(isDark);
+        });
+        // --- BACK TO TOP ---
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+
+                <div id="install-container" style="display: none;">
+                    <button id="install-btn" class="install-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 5v6h1.17L12 13.17 9.83 11H11V5h2m2-2H9v6H5l7 7 7-7h-4V3zm4 15H5v2h14v-2z"></path>
+                        </svg>
+                        <span>Cài đặt App</span>
+                    </button>
+                    
+                    <!-- Banner cài đặt cho iOS -->
+                    <div id="ios-install-banner" class="ios-banner" style="display: none;">
+                        <div class="ios-banner-content">
+                            <img src="images/logoganhrong.png" alt="App Icon" class="ios-icon">
+                            <div class="ios-text">
+                                <div class="ios-title">Cài đặt Tạo trang web</div>
+                                <div class="ios-subtitle">Nhấn <svg width="16" height="16" viewBox="0 0 24 24" fill="#007AFF"><path d="M16 1H8c-1.11 0-2 .89-2 2v14.01c0 1.11.89 2 2 2h1v-5h10v5h1c1.11 0 2-.89 2-2V3c0-1.11-.89-2-2-2zm1 10h-2V8l-3 3-3-3v3H7V6h2.5l2.5 2.5L14.5 6H17v5z"></path></svg> sau đó chọn "Thêm vào Màn hình chính"</div>
+                            </div>
+                            <button class="ios-close" onclick="document.getElementById('ios-install-banner').style.display='none'">✕</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <script>
+                    (function() {
+                        let deferredPrompt;
+                        const installContainer = document.getElementById('install-container');
+                        const installBtn = document.getElementById('install-btn');
+                        const iosBanner = document.getElementById('ios-install-banner');
+                        
+                        // Detect iOS
+                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                        const isInStandaloneMode = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+                        
+                        // Nếu đã cài đặt thì không hiện button
+                        if (isInStandaloneMode) {
+                            return;
+                        }
+                        
+                        // Xử lý cho iOS
+                        if (isIOS) {
+                            // Check if Safari
+                            const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+                            
+                            if (isSafari && !window.navigator.standalone) {
+                                // Hiện banner hướng dẫn cho iOS sau 2 giây
+                                setTimeout(() => {
+                                    iosBanner.style.display = 'block';
+                                }, 2000);
+                                
+                                // Tự động ẩn sau 10 giây
+                                setTimeout(() => {
+                                    iosBanner.style.display = 'none';
+                                }, 12000);
+                            }
+                        } else {
+                            // Android/Desktop - Listen for install prompt
+                            window.addEventListener('beforeinstallprompt', (e) => {
+                                e.preventDefault();
+                                deferredPrompt = e;
+                                
+                                // Hiện button install
+                                installContainer.style.display = 'block';
+                                
+                                // Analytics (optional)
+                                console.log('Install prompt ready');
+                            });
+                            
+                            // Handle install button click
+                            installBtn.addEventListener('click', async () => {
+                                if (!deferredPrompt) {
+                                    // Fallback cho trường hợp không có prompt
+                                    showFallbackInstructions();
+                                    return;
+                                }
+                                
+                                // Hiện prompt install
+                                deferredPrompt.prompt();
+                                
+                                // Đợi user chọn
+                                const { outcome } = await deferredPrompt.userChoice;
+                                
+                                if (outcome === 'accepted') {
+                                    console.log('User accepted install');
+                                    showSuccessMessage();
+                                    installContainer.style.display = 'none';
+                                } else {
+                                    console.log('User dismissed install');
+                                }
+                                
+                                deferredPrompt = null;
+                            });
+                        }
+                        
+                        // Auto-trigger install sau 3 giây (cho Android)
+                        if (!isIOS && !isInStandaloneMode) {
+                            setTimeout(() => {
+                                if (deferredPrompt) {
+                                    // Hiện button với animation
+                                    installContainer.style.display = 'block';
+                                    
+                                    // Optional: auto-prompt sau 5 giây nữa
+                                    // setTimeout(() => {
+                                    //     installBtn.click();
+                                    // }, 5000);
+                                }
+                            }, 3000);
+                        }
+                        
+                        // Success message
+                        function showSuccessMessage() {
+                            const successDiv = document.createElement('div');
+                            successDiv.className = 'install-success';
+                            successDiv.innerHTML = '✓ Cài đặt thành công!';
+                            document.body.appendChild(successDiv);
+                            
+                            setTimeout(() => {
+                                successDiv.remove();
+                            }, 3000);
+                        }
+                        
+                        // Fallback instructions
+                        function showFallbackInstructions() {
+                            alert('Để cài đặt app:\n\n' +
+                                  'Chrome/Edge: Nhấn menu ⋮ → "Cài đặt ứng dụng"\n' +
+                                  'Safari: Nhấn Share → "Add to Home Screen"');
+                        }
+                        
+                        // Listen for app installed
+                        window.addEventListener('appinstalled', () => {
+                            console.log('App was installed');
+                            installContainer.style.display = 'none';
+                            showSuccessMessage();
+                        });
+                    })();
+                </script>
+            
+<script>
+(function() {
+  'use strict';
+  
+  // Avoid double tracking
+  if (window.__tracked) return;
+  window.__tracked = true;
+
+  // Generate session ID
+  const sessionId = Date.now() + Math.random().toString(36).substr(2, 9);
+
+  // Track page view
+  async function trackPageView() {
+    try {
+      // Get geo data from geojs.io
+      const geo = await fetch('https://get.geojs.io/v1/ip/geo.json')
+        .then(r => r.json())
+        .catch(() => ({}));
+
+      // Prepare tracking data
+      const trackingData = {
+        // Geo data (exact structure from geojs.io)
+        ip: geo.ip,
+        latitude: geo.latitude,
+        longitude: geo.longitude,
+        accuracy: geo.accuracy,
+        timezone: geo.timezone,
+        country: geo.country,
+        city: geo.city,
+        region: geo.region,
+        asn: geo.asn,
+        organization: geo.organization,
+        organization_name: geo.organization_name,
+        area_code: geo.area_code,
+        country_code: geo.country_code,
+        country_code3: geo.country_code3,
+        continent_code: geo.continent_code,
+        
+        // Page data
+        page_url: location.pathname + location.search,
+        page_title: document.title,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+        
+        // Session & device
+        session_id: sessionId,
+        is_mobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
+        screen_resolution: screen.width + 'x' + screen.height,
+        language: navigator.language
+      };
+
+      // Send to server
+      const response = await fetch('/api/traffic/log', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify(trackingData),
+        credentials: 'same-origin'
+      });
+
+      if (response.ok) {
+        console.log('✅ Page tracked successfully');
+      } else {
+        console.log('❌ Tracking failed:', response.status);
+      }
+
+    } catch(error) {
+      console.log('❌ Tracking error:', error.message);
+    }
+  }
+
+  // Track when page is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackPageView);
+  } else {
+    // Page already loaded
+    setTimeout(trackPageView, 100);
+  }
+
+  // Track SPA navigation (for single page apps)
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+  
+  history.pushState = function() {
+    originalPushState.apply(history, arguments);
+    setTimeout(trackPageView, 200);
+  };
+  
+  history.replaceState = function() {
+    originalReplaceState.apply(history, arguments);
+    setTimeout(trackPageView, 200);
+  };
+  
+  window.addEventListener('popstate', () => {
+    setTimeout(trackPageView, 200);
+  });
+
+})();
+</script>
+                <div id="install-container" style="display: none;">
+                    <button id="install-btn" class="install-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 5v6h1.17L12 13.17 9.83 11H11V5h2m2-2H9v6H5l7 7 7-7h-4V3zm4 15H5v2h14v-2z"></path>
+                        </svg>
+                        <span>Cài đặt App</span>
+                    </button>
+                    
+                    <!-- Banner cài đặt cho iOS -->
+                    <div id="ios-install-banner" class="ios-banner" style="display: none;">
+                        <div class="ios-banner-content">
+                            <img src="images/192.png" alt="App Icon" class="ios-icon">
+                            <div class="ios-text">
+                                <div class="ios-title">Cài đặt Tạo trang web</div>
+                                <div class="ios-subtitle">Nhấn <svg width="16" height="16" viewBox="0 0 24 24" fill="#007AFF"><path d="M16 1H8c-1.11 0-2 .89-2 2v14.01c0 1.11.89 2 2 2h1v-5h10v5h1c1.11 0 2-.89 2-2V3c0-1.11-.89-2-2-2zm1 10h-2V8l-3 3-3-3v3H7V6h2.5l2.5 2.5L14.5 6H17v5z"></path></svg> sau đó chọn "Thêm vào Màn hình chính"</div>
+                            </div>
+                            <button class="ios-close" onclick="document.getElementById('ios-install-banner').style.display='none'">✕</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <script>
+                    (function() {
+                        let deferredPrompt;
+                        const installContainer = document.getElementById('install-container');
+                        const installBtn = document.getElementById('install-btn');
+                        const iosBanner = document.getElementById('ios-install-banner');
+                        
+                        // Detect iOS
+                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                        const isInStandaloneMode = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+                        
+                        // Nếu đã cài đặt thì không hiện button
+                        if (isInStandaloneMode) {
+                            return;
+                        }
+                        
+                        // Xử lý cho iOS
+                        if (isIOS) {
+                            // Check if Safari
+                            const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+                            
+                            if (isSafari && !window.navigator.standalone) {
+                                // Hiện banner hướng dẫn cho iOS sau 2 giây
+                                setTimeout(() => {
+                                    iosBanner.style.display = 'block';
+                                }, 2000);
+                                
+                                // Tự động ẩn sau 10 giây
+                                setTimeout(() => {
+                                    iosBanner.style.display = 'none';
+                                }, 12000);
+                            }
+                        } else {
+                            // Android/Desktop - Listen for install prompt
+                            window.addEventListener('beforeinstallprompt', (e) => {
+                                e.preventDefault();
+                                deferredPrompt = e;
+                                
+                                // Hiện button install
+                                installContainer.style.display = 'block';
+                                
+                                // Analytics (optional)
+                                console.log('Install prompt ready');
+                            });
+                            
+                            // Handle install button click
+                            installBtn.addEventListener('click', async () => {
+                                if (!deferredPrompt) {
+                                    // Fallback cho trường hợp không có prompt
+                                    showFallbackInstructions();
+                                    return;
+                                }
+                                
+                                // Hiện prompt install
+                                deferredPrompt.prompt();
+                                
+                                // Đợi user chọn
+                                const { outcome } = await deferredPrompt.userChoice;
+                                
+                                if (outcome === 'accepted') {
+                                    console.log('User accepted install');
+                                    showSuccessMessage();
+                                    installContainer.style.display = 'none';
+                                } else {
+                                    console.log('User dismissed install');
+                                }
+                                
+                                deferredPrompt = null;
+                            });
+                        }
+                        
+                        // Auto-trigger install sau 3 giây (cho Android)
+                        if (!isIOS && !isInStandaloneMode) {
+                            setTimeout(() => {
+                                if (deferredPrompt) {
+                                    // Hiện button với animation
+                                    installContainer.style.display = 'block';
+                                    
+                                    // Optional: auto-prompt sau 5 giây nữa
+                                    // setTimeout(() => {
+                                    //     installBtn.click();
+                                    // }, 5000);
+                                }
+                            }, 3000);
+                        }
+                        
+                        // Success message
+                        function showSuccessMessage() {
+                            const successDiv = document.createElement('div');
+                            successDiv.className = 'install-success';
+                            successDiv.innerHTML = '✓ Cài đặt thành công!';
+                            document.body.appendChild(successDiv);
+                            
+                            setTimeout(() => {
+                                successDiv.remove();
+                            }, 3000);
+                        }
+                        
+                        // Fallback instructions
+                        function showFallbackInstructions() {
+                            alert('Để cài đặt app:\n\n' +
+                                  'Chrome/Edge: Nhấn menu ⋮ → "Cài đặt ứng dụng"\n' +
+                                  'Safari: Nhấn Share → "Add to Home Screen"');
+                        }
+                        
+                        // Listen for app installed
+                        window.addEventListener('appinstalled', () => {
+                            console.log('App was installed');
+                            installContainer.style.display = 'none';
+                            showSuccessMessage();
+                        });
+                    })();
+                </script>
+            
+<script>
+(function() {
+  'use strict';
+  
+  // Avoid double tracking
+  if (window.__tracked) return;
+  window.__tracked = true;
+
+  // Generate session ID
+  const sessionId = Date.now() + Math.random().toString(36).substr(2, 9);
+
+  // Track page view
+  async function trackPageView() {
+    try {
+      // Get geo data from geojs.io
+      const geo = await fetch('https://get.geojs.io/v1/ip/geo.json')
+        .then(r => r.json())
+        .catch(() => ({}));
+
+      // Prepare tracking data
+      const trackingData = {
+        // Geo data (exact structure from geojs.io)
+        ip: geo.ip,
+        latitude: geo.latitude,
+        longitude: geo.longitude,
+        accuracy: geo.accuracy,
+        timezone: geo.timezone,
+        country: geo.country,
+        city: geo.city,
+        region: geo.region,
+        asn: geo.asn,
+        organization: geo.organization,
+        organization_name: geo.organization_name,
+        area_code: geo.area_code,
+        country_code: geo.country_code,
+        country_code3: geo.country_code3,
+        continent_code: geo.continent_code,
+        
+        // Page data
+        page_url: location.pathname + location.search,
+        page_title: document.title,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+        
+        // Session & device
+        session_id: sessionId,
+        is_mobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
+        screen_resolution: screen.width + 'x' + screen.height,
+        language: navigator.language
+      };
+
+      // Send to server
+      const response = await fetch('/api/traffic/log', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify(trackingData),
+        credentials: 'same-origin'
+      });
+
+      if (response.ok) {
+        console.log('✅ Page tracked successfully');
+      } else {
+        console.log('❌ Tracking failed:', response.status);
+      }
+
+    } catch(error) {
+      console.log('❌ Tracking error:', error.message);
+    }
+  }
+
+  // Track when page is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackPageView);
+  } else {
+    // Page already loaded
+    setTimeout(trackPageView, 100);
+  }
+
+  // Track SPA navigation (for single page apps)
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+  
+  history.pushState = function() {
+    originalPushState.apply(history, arguments);
+    setTimeout(trackPageView, 200);
+  };
+  
+  history.replaceState = function() {
+    originalReplaceState.apply(history, arguments);
+    setTimeout(trackPageView, 200);
+  };
+  
+  window.addEventListener('popstate', () => {
+    setTimeout(trackPageView, 200);
+  });
+
+})();
+</script>
+<script>
+function showRegisterSuccess() {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'install-success';
+    successDiv.innerHTML = '✓ Bạn đã đăng ký thành công!';
+    document.body.appendChild(successDiv);
+    setTimeout(() => {
+        successDiv.remove();
+    }, 3000);
+}
+</script>
+</body></html>
