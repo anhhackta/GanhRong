@@ -657,10 +657,14 @@
 
             <div class="max-w-xl mx-auto neo-brutal-card bg-dark-bg-luxe p-8 md:p-12 glass-effect depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                 <div class="depth-element-inner">
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="#" method="POST" class="space-y-6" id="preregister-form">
+                        <div>
+                            <label for="name-prereg" class="sr-only">Tên của bạn</label>
+                            <input type="text" id="name-prereg" name="name" placeholder="Tên của bạn" required class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium); margin-bottom: 1rem;">
+                        </div>
                         <div>
                             <label for="email-prereg" class="sr-only">Email của bạn</label>
-                            <input type="email" id="email-prereg" name="email" placeholder="Địa chỉ Email của bạn" required="" class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium);">
+                            <input type="email" id="email-prereg" name="email" placeholder="Địa chỉ Email của bạn" required class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium);">
                         </div>
                         <div>
                             <button type="submit" class="cta-button w-full">
@@ -943,6 +947,7 @@
                 bgMusic.pause();
                 isPlaying = false;
             } else {
+                bgMusic.currentTime = 0;
                 bgMusic.play();
                 isPlaying = true;
             }
@@ -965,15 +970,13 @@
                 document.body.classList.remove('bg-white');
                 document.body.classList.add('text-dark-text-main');
                 document.body.classList.remove('text-dark-on-light-contrast');
-                iconMoon.classList.add('hidden');
-                iconSun.classList.remove('hidden');
+                document.body.style.backgroundColor = '#080C14';
             } else {
                 document.body.classList.remove('bg-dark-bg-luxe');
                 document.body.classList.add('bg-white');
                 document.body.classList.remove('text-dark-text-main');
                 document.body.classList.add('text-dark-on-light-contrast');
-                iconMoon.classList.remove('hidden');
-                iconSun.classList.add('hidden');
+                document.body.style.backgroundColor = '#ffffff';
             }
         }
         modeToggle.addEventListener('click', () => {
@@ -1478,4 +1481,5 @@ function showRegisterSuccess() {
     }, 3000);
 }
 </script>
+<script src="js/preregister.js"></script>
 </body></html>
