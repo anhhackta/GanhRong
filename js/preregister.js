@@ -32,6 +32,7 @@ form.addEventListener('submit', async function(e) {
     } else {
         showMessage('Đăng ký thành công! Cảm ơn bạn.', true);
         form.reset();
+        updatePreregisterCount();
     }
 });
 
@@ -87,17 +88,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 async function updatePreregisterCount() {
     try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?select=id`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/count_preregister`, {
+            method: 'POST',
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
                 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
             }
         });
         if (!res.ok) return;
         const data = await res.json();
-        const count = data.length;
+        const count = data.count || 0;
         const el = document.getElementById('prereg-count');
         if (el) el.textContent = count.toLocaleString('en-US');
     } catch (e) {}
