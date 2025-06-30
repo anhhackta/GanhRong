@@ -37,7 +37,7 @@ form.addEventListener('submit', async function(e) {
 
 async function checkEmailExists(email) {
     try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?mail=eq.${encodeURIComponent(email)}`, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?email=eq.${encodeURIComponent(email)}`, {
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
                 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -63,7 +63,7 @@ async function insertPreregister(name, email) {
                 'Content-Type': 'application/json',
                 'Prefer': 'return=representation'
             },
-            body: JSON.stringify({ name, mail: email })
+            body: JSON.stringify({ name, email })
         });
         if (!res.ok) return { error: true };
         return { error: false };
@@ -79,4 +79,26 @@ function showMessage(msg, success) {
     div.innerHTML = success ? `✓ ${msg}` : `✕ ${msg}`;
     document.body.appendChild(div);
     setTimeout(() => div.remove(), 3000);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    updatePreregisterCount();
+});
+
+async function updatePreregisterCount() {
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?select=id`, {
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const count = data.length;
+        const el = document.getElementById('prereg-count');
+        if (el) el.textContent = count.toLocaleString('en-US');
+    } catch (e) {}
 } 
