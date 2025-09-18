@@ -9,37 +9,51 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <!-- FC Comic Jungle Font -->
+    <style>
+        @font-face {
+            font-family: 'FC Comic Jungle';
+            src: url('fonts/FC-Comic-Jungle.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="css/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
 
     <style>
         :root {
             --color-black-premium: #080C14;
-            --color-white-premium: #FAFBFF;
-            --color-blue-vibrant: #2563EB;
+            --color-white-premium: #fdfaef;
+            --color-blue-vibrant: #C81F12;
             --color-blue-dark: #0D4FC9;
             --color-blue-light: #CFDFFF;
-            --color-orange-vibrant: #F97316;
+            --color-orange-vibrant: #D88307;
             --color-orange-dark: #C2410C;
             --color-purple-luxe: #9333EA;
             --color-purple-dark: #581C87;
             --color-green-success: #16A34A;
             --color-red-alert: #DC2626;
             --color-text-main: #080C14;
+            --color-text-redtext: #C81F12;
             --color-text-secondary: #334155;
             --color-text-info: #64748B;
             --color-dark-bg-luxe: #030711;
-            --color-dark-text-main: #FAFBFF;
+            --color-dark-text-main: #fdfaef;
             --color-dark-text-secondary: #CBD5E1;
             --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
             --ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --color-blue-btn:#05729D;
         }
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: #fdfaef;
             color: var(--color-text-main);
             overflow-x: hidden;
         }
@@ -47,6 +61,10 @@
             font-family: 'Chakra Petch', sans-serif;
             color: var(--color-black-premium);
             font-weight: 800;
+        }
+        
+        .font-bold {
+            font-family: 'FC Comic Jungle', 'Chakra Petch', sans-serif;
         }
         .container { max-width: 1400px; padding-left: 2rem; padding-right: 2rem; margin-left: auto; margin-right: auto; }
         .back-to-top {
@@ -59,7 +77,7 @@
             transition: opacity 0.3s;
         }
         .back-to-top.show { opacity: 1; pointer-events: auto; }
-        .back-to-top svg { width: 28px; height: 28px; fill: #fff; }
+        .back-to-top svg { width: 28px; height: 28px; fill: #fdfaef; }
         @media (max-width: 640px) {
             .back-to-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
             .back-to-top svg { width: 22px; height: 22px; }
@@ -76,32 +94,28 @@
         .magnetic-hover { transition: transform 0.3s var(--ease-out-cubic); will-change: transform; }
         .magnetic-hover:hover { transform: scale(1.05) translateZ(0); }
         .cta-button {
-            background: linear-gradient(90deg, var(--color-blue-vibrant), var(--color-purple-luxe), var(--color-orange-vibrant));
-            background-size: 200% 200%; animation: gradient-shift 5s ease infinite;
+            background: var(--color-blue-btn);
             color: var(--color-white-premium); border: none; padding: 1rem 2.5rem; border-radius: 9999px;
             font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-            transition: all 0.3s var(--ease-out-expo); box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s var(--ease-out-expo); box-shadow: 0 8px 15px rgba(5, 114, 157, 0.3);
             position: relative; overflow: hidden; z-index: 1;
         }
-        .cta-button:hover { background-position: 100% 0%; box-shadow: 0 12px 20px rgba(37, 99, 235, 0.4); transform: translateY(-3px); }
+        .cta-button:hover { background: var(--color-blue-btn); box-shadow: 0 12px 20px rgba(5, 114, 157, 0.4); transform: translateY(-3px); }
         .cta-button:active { transform: translateY(1px); }
         .cta-button::after {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.1); opacity: 0; transition: opacity 0.3s var(--ease-out-cubic); z-index: -1;
         }
         .cta-button:hover::after { opacity: 1; }
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
-        }
         .text-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
         .text-reveal.aos-animate { opacity: 1; transform: translateY(0); }
         .depth-element { position: relative; perspective: 1000px; }
         .depth-element-inner {
             transform: translateZ(0); transition: transform 0.5s var(--ease-in-out-sine), box-shadow 0.5s var(--ease-in-out-sine);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 0 0 rgba(37, 99, 235, 0);
+            box-shadow: none;
         }
         .depth-element:hover .depth-element-inner {
-            transform: translateZ(20px); box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 0 20px 5px rgba(37, 99, 235, 0.4);
+            transform: translateZ(20px); box-shadow: none;
         }
         .neo-brutal-card {
             border: 3px solid var(--color-black-premium); background-color: var(--color-white-premium);
@@ -122,13 +136,80 @@
         .text-light-on-dark-contrast { color: var(--color-dark-text-main); }
         .mobile-menu-open { display: flex !important; }
         .accordion-content { transition: max-height 0.5s var(--ease-in-out-sine); }
+        
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: var(--color-text-main);
+        }
+        
+        .loading-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .loading-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 1rem auto 0.5rem auto;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-percentage {
+            margin: 0.5rem auto 0 auto;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
     </style>
 
                 <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
                 <meta name="mobile-web-app-capable" content="yes">
                 <meta name="apple-mobile-web-app-capable" content="yes">
                 <meta name="apple-mobile-web-app-title" content="Tạo trang web">
-                <meta name="theme-color" content="#ffffff">
+                <meta name="theme-color" content="#fdfaef">
                 <link rel="apple-touch-icon" href="images/192.png">
             
                 <style>
@@ -137,7 +218,7 @@
                         position: fixed;
                         bottom: 20px;
                         right: 20px;
-                        background: #ffffff;
+                        background: #fdfaef;
                           color: #000000;
                         border: none;
                         border-radius: 50px;
@@ -270,7 +351,7 @@
                         }
                     }
                 </style>
-            <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-8{bottom:-2rem}.-right-8{right:-2rem}.bottom-4{bottom:1rem}.left-0{left:0px}.left-4{left:1rem}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-6{top:1.5rem}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-32{height:8rem}.h-64{height:16rem}.h-auto{height:auto}.h-full{height:100%}.max-h-0{max-height:0px}.min-h-screen{min-height:100vh}.w-32{width:8rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.-rotate-1{--tw-rotate:-1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-95{--tw-bg-opacity:0.95}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-light{font-weight:300}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:rotate-1:hover{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:rotate-0{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:rotate-12{--tw-rotate:12deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-150{--tw-scale-x:1.5;--tw-scale-y:1.5;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-20{opacity:0.2}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:items-start{align-items:flex-start}.md\:p-12{padding:3rem}.md\:text-left{text-align:left}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-8xl{font-size:6rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:p-8{padding:2rem}}</style><style id="editing-styles">
+            <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fdfaef;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fdfaef;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-8{bottom:-2rem}.-right-8{right:-2rem}.bottom-4{bottom:1rem}.left-0{left:0px}.left-4{left:1rem}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-6{top:1.5rem}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-32{height:8rem}.h-64{height:16rem}.h-auto{height:auto}.h-full{height:100%}.max-h-0{max-height:0px}.min-h-screen{min-height:100vh}.w-32{width:8rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.-rotate-1{--tw-rotate:-1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-95{--tw-bg-opacity:0.95}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-light{font-weight:300}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:rotate-1:hover{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:rotate-0{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:rotate-12{--tw-rotate:12deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-150{--tw-scale-x:1.5;--tw-scale-y:1.5;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-20{opacity:0.2}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:items-start{align-items:flex-start}.md\:p-12{padding:3rem}.md\:text-left{text-align:left}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-8xl{font-size:6rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:p-8{padding:2rem}}</style><style id="editing-styles">
       [data-editable] {
         outline: 2px dashed #FF9800 !important;
         cursor: text !important;
@@ -307,7 +388,7 @@
                 <meta name="mobile-web-app-capable" content="yes">
                 <meta name="apple-mobile-web-app-capable" content="yes">
                 <meta name="apple-mobile-web-app-title" content="Tạo trang web">
-                <meta name="theme-color" content="#ffffff">
+                <meta name="theme-color" content="#fdfaef">
                 <link rel="apple-touch-icon" href="images/192.png">
             
                 <style>
@@ -316,7 +397,7 @@
                         position: fixed;
                         bottom: 20px;
                         right: 20px;
-                        background: #ffffff;
+                        background: #fdfaef;
                           color: #000000;
                         border: none;
                         border-radius: 50px;
@@ -452,13 +533,26 @@
             </head>
 <body class="antialiased text-dark-on-light-contrast" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="0">
 
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <dotlottie-wc src="https://lottie.host/8ada8e47-531a-475a-91b9-f88470fea3c8/5pcARwBk7y.lottie" style="width: 500px;height: 500px" autoplay loop></dotlottie-wc>
+            <h1 class="loading-title">GÁNH RONG</h1>
+            <p class="loading-subtitle">Game của người Việt</p>
+            <div class="loading-progress">
+                <div id="loading-progress-bar" class="loading-progress-bar"></div>
+            </div>
+            <div id="loading-percentage" class="loading-percentage">0%</div>
+        </div>
+    </div>
+
     <header class="sticky top-0 z-50 py-4 glass-effect aos-init aos-animate" data-aos="fade-down" data-aos-duration="1000">
         <nav class="container flex items-center justify-between relative">
             <div class="flex items-center min-w-0">
                 <a href="#" class="flex items-center min-w-0">
-                    <img src="images/logoganhrong.png" alt="Logo Gánh Rong" class="w-12 h-12 rounded-full border-2 border-blue-vibrant bg-white shadow mr-3">
+                    <img src="images/Logo.png" alt="Logo Gánh Rong" class="w-12 h-12 rounded-full border-2 border-blue-vibrant bg-white shadow mr-3">
                 </a>
-                <span class="gradient-text-header text-2xl md:text-3xl font-bold tracking-tight" style="background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-purple-luxe)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GÁNH RONG</span>
+                <span class="gradient-text-header text-2xl md:text-3xl font-bold tracking-tight" style="color: var(--color-blue-vibrant);">GÁNH RONG</span>
             </div>
             <div class="hidden md:flex items-center space-x-8 ml-auto">
                 <a href="#about" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Về Game</a>
@@ -471,10 +565,10 @@
                     <svg id="sound-on" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/></svg>
                     <svg id="sound-off" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><line x1="21" y1="3" x2="3" y2="21" stroke="red" stroke-width="2"/></svg>
                 </button>
-                <button id="mode-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Chuyển chế độ sáng/tối">
+                <!--<button id="mode-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Chuyển chế độ sáng/tối">
                     <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="currentColor"/></svg>
                     <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
-                </button>
+                </button>-->
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-blue-100 transition text-3xl focus:outline-none z-20">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
@@ -497,13 +591,11 @@
 
         <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="text-black aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
-                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight text-shadow-glow text-black" style="color:#000; text-shadow: 0 0 15px var(--color-orange-vibrant);">
-                    GÁNH RONG
-                </h1>
-                <p class="text-lg font-semibold mb-2 text-black" style="color:#000">GAME GÁNH RONG 3D VIỆT NAM</p>
-                <p class="text-2xl md:text-3xl mb-8 leading-relaxed font-light text-black text-reveal" style="color:#000" data-aos-delay="200">
+                <img src="images/Logo.png" alt="Logo Gánh Rong">
+                <p class="text-lg font-semibold mb-5 text-black" style="color:#000">GAME GÁNH RONG 3D VIỆT NAM</p>
+                <!--<p class="text-2xl md:text-3xl mb-8 leading-relaxed font-light text-black text-reveal" style="color:#000" data-aos-delay="200">
                     Game đậm chất Việt Nam những năm 90.
-                </p>
+                </p>/-->
                 <div data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">
                     <a href="#pre-register" class="cta-button magnetic-hover">
                         ĐĂNG KÝ NGAY
@@ -519,12 +611,12 @@
         </div>
     </section>
 
-    <section id="about" class="py-24 bg-white relative overflow-hidden">
+    <section id="about" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
         <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
         <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="depth-element aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000">
-                <div class="depth-element-inner neo-brutal-card p-6 lg:p-8 relative z-10 bg-white">
-                    <h2 class="text-5xl font-extrabold mb-6 text-orange-vibrant leading-tight">
+                <div class="depth-element-inner neo-brutal-card p-6 lg:p-8 relative z-10" style="background-color: #fdfaef;">
+                    <h2 class="text-5xl font-bold mb-6 text-orange-vibrant leading-tight">
                         GAME HÀNG RONG VIỆT NAM MANG PHONG CÁCH CHIBI
                     </h2>
                     <p class="text-xl leading-relaxed text-text-secondary text-reveal mb-4">
@@ -561,7 +653,7 @@
                 <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
                     <div class="depth-element-inner relative z-10">
                         <i class="fas fa-hat-wizard text-6xl text-purple-luxe mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Thế Giới Chibi Sống Động</h3>
+                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Thế Giới Chibi Sống Động</h3>
                         <p class="text-lg text-dark-text-secondary">Đồ họa chibi được vẽ tay tỉ mỉ, tái hiện chân thực khung cảnh Việt Nam xưa với nét đáng yêu độc đáo.</p>
                         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
                     </div>
@@ -569,7 +661,7 @@
                 <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                     <div class="depth-element-inner relative z-10">
                         <i class="fas fa-map-marked-alt text-6xl text-orange-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Cốt Truyện Đậm Chất Việt</h3>
+                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Cốt Truyện Đậm Chất Việt</h3>
                         <p class="text-lg text-dark-text-secondary">Phiêu lưu qua những câu chuyện gắn liền với văn hóa, truyền thuyết và cuộc sống thường ngày của người Việt.</p>
                         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-luxe opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
                     </div>
@@ -577,7 +669,7 @@
                 <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                     <div class="depth-element-inner relative z-10">
                         <i class="fas fa-gamepad text-6xl text-blue-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4 text-dark-text-main">Lối Chơi Sáng Tạo</h3>
+                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Lối Chơi Sáng Tạo</h3>
                         <p class="text-lg text-dark-text-secondary">Kết hợp yếu tố nhập vai, giải đố và tương tác cộng đồng trong một trải nghiệm mới mẻ.</p>
                         <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-orange-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
                     </div>
@@ -586,7 +678,7 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-24 bg-white relative overflow-hidden">
+    <section id="gallery" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
         <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
         <div class="container relative z-10">
             <div class="text-center mb-16">
@@ -667,7 +759,7 @@
                             <input type="email" id="email-prereg" name="email" placeholder="Địa chỉ Email của bạn" required class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium);">
                         </div>
                         <div>
-                            <button type="submit" class="cta-button w-full">
+                            <button type="submit" class="cta-button w-full font-bold">
                                 ĐĂNG KÝ NGAY
                             </button>
                         </div>
@@ -692,7 +784,7 @@
         </div>
     </section>
 
-    <section id="faq" class="py-24 bg-white relative overflow-hidden">
+    <section id="faq" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
         <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
         <div class="container relative z-10">
             <div class="text-center mb-16">
@@ -705,7 +797,7 @@
             </div>
 
             <div class="max-w-3xl mx-auto space-y-6">
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
                     <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
                         <span>Gánh Rong là thể loại game gì?</span>
                         <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
@@ -716,7 +808,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                     <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
                         <span>Game sẽ ra mắt trên nền tảng nào?</span>
                         <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
@@ -727,7 +819,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
                     <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="false">
                         <span>Làm sao để đăng ký trước?</span>
                         <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
@@ -742,7 +834,7 @@
         </div>
     </section>
 
-    <section id="progress" class="py-24 bg-white relative overflow-hidden">
+    <section id="progress" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
         <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
         <div class="container relative z-10">
             <div class="text-center mb-16">
@@ -756,22 +848,22 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-4xl mb-2 text-blue-vibrant"><i class="fas fa-lightbulb"></i></div>
-                    <div class="font-bold text-lg mb-1">Khởi động dự án</div>
+                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Khởi động dự án</div>
                     <div class="text-text-secondary text-sm">01/2025</div>
                 </div>
                 <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-4xl mb-2 text-orange-vibrant"><i class="fas fa-pencil-ruler"></i></div>
-                    <div class="font-bold text-lg mb-1">Thiết kế & Đồ họa</div>
+                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Thiết kế & Đồ họa</div>
                     <div class="text-text-secondary text-sm">02-03/2025</div>
                 </div>
                 <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-4xl mb-2 text-purple-luxe"><i class="fas fa-code"></i></div>
-                    <div class="font-bold text-lg mb-1">Lập trình & Phát triển</div>
+                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Lập trình & Phát triển</div>
                     <div class="text-text-secondary text-sm">04-06/2025</div>
                 </div>
                 <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
                     <div class="text-4xl mb-2 text-green-success"><i class="fas fa-rocket"></i></div>
-                    <div class="font-bold text-lg mb-1">Ra mắt & Phát hành</div>
+                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Ra mắt & Phát hành</div>
                     <div class="text-text-secondary text-sm">Dự kiến 11/2025</div>
                 </div>
             </div>
@@ -790,44 +882,44 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://i.pravatar.cc/120?img=1" alt="Thành viên 1" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
-                    <div class="font-bold text-lg mb-1">Hà Xuân Lĩnh</div>
+                    <div class="font-semibold text-lg mb-1">Hà Xuân Lĩnh</div>
                     <div class="text-text-secondary text-sm mb-2">Trưởng dự án</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://i.pravatar.cc/120?img=2" alt="Thành viên 2" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
-                    <div class="font-bold text-lg mb-1">Nguyễn Văn Hiếu</div>
+                    <div class="font-semibold text-lg mb-1">Nguyễn Văn Hiếu</div>
                     <div class="text-text-secondary text-sm mb-2">Thiết kế UI/UX</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="300">
                     <img src="https://i.pravatar.cc/120?img=3" alt="Thành viên 3" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
-                    <div class="font-bold text-lg mb-1">Nguyễn Bá Hoàng</div>
+                    <div class="font-semibold text-lg mb-1">Nguyễn Bá Hoàng</div>
                     <div class="text-text-secondary text-sm mb-2">Lập trình chính</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="400">
                     <img src="https://i.pravatar.cc/120?img=4" alt="Thành viên 4" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
-                    <div class="font-bold text-lg mb-1">Phùng Tấn Khang</div>
+                    <div class="font-semibold text-lg mb-1">Phùng Tấn Khang</div>
                     <div class="text-text-secondary text-sm mb-2">Thiết kế đồ họa</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="500">
                     <img src="https://i.pravatar.cc/120?img=5" alt="Thành viên 5" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
-                    <div class="font-bold text-lg mb-1">Cao Hoài Bảo</div>
+                    <div class="font-semibold text-lg mb-1">Cao Hoài Bảo</div>
                     <div class="text-text-secondary text-sm mb-2">Backend Developer</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="600">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="600">
                     <img src="https://i.pravatar.cc/120?img=6" alt="Thành viên 6" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
-                    <div class="font-bold text-lg mb-1">Nguyễn Thị Kim Loan</div>
+                    <div class="font-semibold text-lg mb-1">Nguyễn Thị Kim Loan</div>
                     <div class="text-text-secondary text-sm mb-2">Frontend Developer</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="700">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="700">
                     <img src="https://i.pravatar.cc/120?img=7" alt="Thành viên 7" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
-                    <div class="font-bold text-lg mb-1">Châu Tị Tuyết Sương</div>
+                    <div class="font-semibold text-lg mb-1">Châu Thị Tuyết Sương</div>
                     <div class="text-text-secondary text-sm mb-2">QA & Tester</div>
                 </div>
-                <div class="neo-brutal-card bg-white p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">
+                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="800">
                     <img src="https://i.pravatar.cc/120?img=8" alt="Thành viên 8" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
-                    <div class="font-bold text-lg mb-1">Nguyễn Thị Như Phượng</div>
+                    <div class="font-semibold text-lg mb-1">Nguyễn Thị Như Phượng</div>
                     <div class="text-text-secondary text-sm mb-2">Marketing & PR</div>
                 </div>
             </div>
@@ -839,7 +931,7 @@
         <div class="container relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-dark-text-main">
             <div class="flex flex-col items-center md:items-start text-center md:text-left">
                 <a href="#" class="flex items-center text-3xl font-bold tracking-tight text-dark-text-main mb-4 group">
-                    <img src="images/logoganhrong.png" alt="Logo Gánh Rong" class="w-10 h-10 mr-2 rounded-full border-2 border-blue-vibrant">
+                    <img src="images/logo.jpg" alt="Logo Gánh Rong" class="w-10 h-10 mr-2 rounded-full border-2 border-blue-vibrant">
                     <span class="gradient-text-footer" style="background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-orange-vibrant)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GÁNH RONG</span>
                 </a>
                 <p class="text-dark-text-secondary text-sm">Tiếp nối hành trình, ký ức sống động.</p>
@@ -918,16 +1010,7 @@
         window.addEventListener('scroll', () => {
             if (heroBg) { heroBg.style.transform = `translateY(${window.pageYOffset * 0.2}px)`; }
         });
-        const preregCountElement = document.getElementById('prereg-count');
-        let currentCount = 0; const targetCount = 10000; const duration = 2000;
-        const start = performance.now();
-        function animateCount(timestamp) {
-            const progress = (timestamp - start) / duration;
-            const animatedCount = Math.min(targetCount, Math.floor(progress * targetCount));
-            preregCountElement.textContent = animatedCount.toLocaleString('en-US');
-            if (animatedCount < targetCount) { requestAnimationFrame(animateCount); }
-        }
-        requestAnimationFrame(animateCount);
+        
         // --- TOGGLE ÂM THANH SVG + AUTO PLAY ---
         const soundToggle = document.getElementById('sound-toggle');
         const soundOn = document.getElementById('sound-on');
@@ -960,6 +1043,32 @@
             isPlaying = true;
             updateSoundIcon();
         });
+        
+        // Loading Screen Logic
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const progressBar = document.getElementById('loading-progress-bar');
+            const percentage = document.getElementById('loading-percentage');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                percentage.textContent = Math.round(progress) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 800);
+                    }, 500);
+                }
+            }, 100);
+        });
         // --- TOGGLE DARK/LIGHT SVG ---
         const modeToggle = document.getElementById('mode-toggle');
         const iconMoon = document.getElementById('icon-moon');
@@ -977,7 +1086,7 @@
                 document.body.classList.add('bg-white');
                 document.body.classList.remove('text-dark-text-main');
                 document.body.classList.add('text-dark-on-light-contrast');
-                document.body.style.backgroundColor = '#ffffff';
+                document.body.style.backgroundColor = '#fdfaef';
             }
         }
         modeToggle.addEventListener('click', () => {
