@@ -108,34 +108,26 @@
         }
         .cta-button:hover::after { opacity: 1; }
         
-        /* New Register Button Style */
-        .new-register-button {
+        /* Register Image Button Style */
+        .register-image-button {
             display: inline-block;
-            background: #0D4FC9;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-            border: 2px solid #0D4FC9;
+            transition: transform 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
         
-        .new-register-button:hover {
-            background: #F9649A;
-            border-color: #F9649A;
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
-            transform: translateY(-2px);
+        .register-image-button:hover {
+            transform: scale(1.05);
         }
         
-        .new-register-button:active {
-            transform: translateY(0);
+        .register-btn-image {
+            max-width: 200px;
+            height: auto;
+            transition: all 0.3s ease;
+            filter: hue-rotate(0deg);
+        }
+        
+        .register-image-button:hover .register-btn-image {
+            filter: hue-rotate(200deg) saturate(1.2);
         }
         
         .text-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
@@ -647,8 +639,8 @@
                     Game đậm chất Việt Nam những năm 90.
                 </p>/-->
                 <div data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">
-                    <a href="#pre-register" class="new-register-button">
-                        ĐĂNG KÝ NGAY
+                    <a href="#pre-register" class="register-image-button">
+                        <img src="images/headerYYBtn.png" alt="Đăng ký ngay" class="register-btn-image">
                     </a>
                 </div>
             </div>
@@ -1028,7 +1020,8 @@
     </footer>
 
     <script src="js/aos.js"></script>
-    <audio id="bg-music" src="audio/bg-music.mp3" loop></audio>
+    <audio id="bg-music" src="audio/bg-music.mp3"></audio>
+    <audio id="bg-music-2" src="audio/windviewhill.mp3"></audio>
     <script>
         AOS.init({ duration: 1000, easing: 'ease-out-cubic', once: true, mirror: false });
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1079,7 +1072,18 @@
         const soundOn = document.getElementById('sound-on');
         const soundOff = document.getElementById('sound-off');
         const bgMusic = document.getElementById('bg-music');
-        let isPlaying = true;
+        const bgMusic2 = document.getElementById('bg-music-2');
+        
+        // Playlist và quản lý nhạc
+        const playlist = [bgMusic, bgMusic2];
+        let currentTrackIndex = 0;
+        let currentAudio = null;
+        
+        // Các biến này sẽ reset về giá trị ban đầu mỗi lần reload trang
+        let isPlaying = false; // Mặc định tắt
+        let hasReachedAbout = false; // Kiểm tra đã đến phần About lần đầu chưa (chỉ trong phiên này)
+        let musicInitialized = false; // Kiểm tra đã khởi tạo nhạc chưa (chỉ trong phiên này)
+        
         function updateSoundIcon() {
             if (isPlaying) {
                 soundOn.classList.remove('hidden');
@@ -1089,21 +1093,128 @@
                 soundOff.classList.remove('hidden');
             }
         }
-        soundToggle.addEventListener('click', () => {
+        
+        // Hàm chọn bài ngẫu nhiên
+        function getRandomTrack() {
+            const randomIndex = Math.floor(Math.random() * playlist.length);
+            return { track: playlist[randomIndex], index: randomIndex };
+        }
+        
+        // Hàm chuyển bài tiếp theo
+        function playNextTrack() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            // Chọn bài tiếp theo (không trùng bài hiện tại nếu có nhiều hơn 1 bài)
+            let nextIndex;
+            if (playlist.length > 1) {
+                do {
+                    nextIndex = Math.floor(Math.random() * playlist.length);
+                } while (nextIndex === currentTrackIndex);
+            } else {
+                nextIndex = 0;
+            }
+            
+            currentTrackIndex = nextIndex;
+            currentAudio = playlist[currentTrackIndex];
+            currentAudio.volume = 0.5;
+            
             if (isPlaying) {
-                bgMusic.pause();
+                currentAudio.play().catch(() => {
+                    isPlaying = false;
+                    updateSoundIcon();
+                });
+            }
+        }
+        
+        // Hàm khởi tạo nhạc lần đầu trong phiên này
+        function initMusic() {
+            if (!musicInitialized) {
+                // Chọn bài ngẫu nhiên lần đầu
+                const randomChoice = getRandomTrack();
+                currentAudio = randomChoice.track;
+                currentTrackIndex = randomChoice.index;
+                
+                currentAudio.volume = 0.5;
+                currentAudio.play().then(() => {
+                    isPlaying = true;
+                    updateSoundIcon();
+                }).catch(() => {
+                    isPlaying = false;
+                    updateSoundIcon();
+                });
+                
+                // Lắng nghe sự kiện kết thúc bài để chuyển bài tiếp theo
+                playlist.forEach(audio => {
+                    audio.addEventListener('ended', () => {
+                        if (isPlaying) {
+                            playNextTrack();
+                        }
+                    });
+                });
+                
+                musicInitialized = true;
+            }
+        }
+        
+        // Hàm kiểm tra khi đến phần About
+        function checkAboutSection() {
+            if (!hasReachedAbout) {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                    const rect = aboutSection.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                        hasReachedAbout = true;
+                        initMusic();
+                    }
+                }
+            }
+        }
+        
+        // Lắng nghe scroll để kiểm tra phần About
+        window.addEventListener('scroll', checkAboutSection);
+        
+        // Lắng nghe click vào link "Về Game"
+        document.querySelectorAll('a[href="#about"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!hasReachedAbout) {
+                    hasReachedAbout = true;
+                    // Delay một chút để scroll animation hoàn thành
+                    setTimeout(initMusic, 500);
+                }
+            });
+        });
+        
+        soundToggle.addEventListener('click', () => {
+            if (!musicInitialized) {
+                initMusic();
+                return;
+            }
+            
+            if (isPlaying) {
+                // Dừng bài hiện tại
+                if (currentAudio) {
+                    currentAudio.pause();
+                }
                 isPlaying = false;
             } else {
-                bgMusic.currentTime = 0;
-                bgMusic.play();
+                // Phát bài hiện tại hoặc chọn bài mới nếu chưa có
+                if (!currentAudio) {
+                    playNextTrack();
+                } else {
+                    currentAudio.currentTime = 0;
+                    currentAudio.play();
+                }
                 isPlaying = true;
             }
             updateSoundIcon();
         });
+        
         window.addEventListener('DOMContentLoaded', () => {
-            bgMusic.volume = 0.5;
-            bgMusic.play().catch(()=>{});
-            isPlaying = true;
+            // Mặc định hiển thị icon tắt âm thanh
+            isPlaying = false;
             updateSoundIcon();
         });
         
