@@ -215,12 +215,12 @@ if (document.readyState === 'loading') {
 // Form handling
 if (form) {
     console.log('📝 Form found, setting up event listener');
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
         console.log('📝 Form submitted');
         
-        const name = document.getElementById('name-prereg').value.trim();
-        const email = document.getElementById('email-prereg').value.trim().toLowerCase();
+    const name = document.getElementById('name-prereg').value.trim();
+    const email = document.getElementById('email-prereg').value.trim().toLowerCase();
         
         console.log('📝 Form data:', { name, email });
         
@@ -229,32 +229,32 @@ if (form) {
             return;
         }
 
-        // Kiểm tra email đã tồn tại chưa
-        const { exists, error: checkError } = await checkEmailExists(email);
-        if (checkError) {
+    // Kiểm tra email đã tồn tại chưa
+    const { exists, error: checkError } = await checkEmailExists(email);
+    if (checkError) {
             console.log('❌ Email check error');
-            showMessage('Đã có lỗi xảy ra, vui lòng thử lại sau!', false);
-            return;
-        }
-        if (exists) {
+        showMessage('Đã có lỗi xảy ra, vui lòng thử lại sau!', false);
+        return;
+    }
+    if (exists) {
             console.log('❌ Email already exists');
-            showMessage('Email này đã được đăng ký trước!', false);
-            return;
-        }
+        showMessage('Email này đã được đăng ký trước!', false);
+        return;
+    }
 
-        // Gửi dữ liệu lên Supabase
+    // Gửi dữ liệu lên Supabase
         console.log('📤 Sending data to Supabase...');
-        const { error } = await insertPreregister(name, email);
-        if (error) {
+    const { error } = await insertPreregister(name, email);
+    if (error) {
             console.log('❌ Insert failed');
-            showMessage('Đăng ký thất bại, vui lòng thử lại!', false);
-        } else {
+        showMessage('Đăng ký thất bại, vui lòng thử lại!', false);
+    } else {
             console.log('✅ Insert successful');
-            showMessage('Đăng ký thành công! Cảm ơn bạn.', true);
-            form.reset();
-            updatePreregisterCount();
-        }
-    });
+        showMessage('Đăng ký thành công! Cảm ơn bạn.', true);
+        form.reset();
+        updatePreregisterCount();
+    }
+});
 } else {
     console.error('❌ Form not found');
 }
