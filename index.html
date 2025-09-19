@@ -107,6 +107,37 @@
             background: rgba(255, 255, 255, 0.1); opacity: 0; transition: opacity 0.3s var(--ease-out-cubic); z-index: -1;
         }
         .cta-button:hover::after { opacity: 1; }
+        
+        /* New Register Button Style */
+        .new-register-button {
+            display: inline-block;
+            background: #0D4FC9;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            border: 2px solid #0D4FC9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .new-register-button:hover {
+            background: #F9649A;
+            border-color: #F9649A;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .new-register-button:active {
+            transform: translateY(0);
+        }
+        
         .text-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
         .text-reveal.aos-animate { opacity: 1; transform: translateY(0); }
         .depth-element { position: relative; perspective: 1000px; }
@@ -616,7 +647,7 @@
                     Game đậm chất Việt Nam những năm 90.
                 </p>/-->
                 <div data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">
-                    <a href="#pre-register" class="cta-button magnetic-hover">
+                    <a href="#pre-register" class="new-register-button">
                         ĐĂNG KÝ NGAY
                     </a>
                 </div>
