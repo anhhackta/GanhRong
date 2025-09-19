@@ -203,6 +203,18 @@
             opacity: 0.8;
             text-align: center;
         }
+        
+        /* Logo fade-in animation */
+        .logo-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+        }
+        
+        .logo-fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 
                 <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
@@ -554,6 +566,13 @@
                 </a>
                 <span class="gradient-text-header text-2xl md:text-3xl font-bold tracking-tight" style="color: var(--color-blue-vibrant);">GÁNH RONG</span>
             </div>
+            <!-- Logo VTC Academy ở giữa -->
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <a href="https://vtc.edu.vn/" target="_blank" rel="noopener noreferrer" class="flex items-center hover:scale-105 transition-transform duration-300">
+                    <img src="images/R.png" alt="VTC Academy Logo" class="h-7 md:h-9">
+                </a>
+            </div>
+        
             <div class="hidden md:flex items-center space-x-8 ml-auto">
                 <a href="#about" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Về Game</a>
                 <a href="#features" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Điểm Nổi Bật</a>
@@ -590,8 +609,8 @@
         <!-- Đã loại bỏ div lỗi style background-image ở hero section -->
 
         <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="text-black aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
-                <img src="images/Logo.png" alt="Logo Gánh Rong">
+            <div class="text-black aos-init aos-animate text-center" data-aos="fade-right" data-aos-duration="1200">
+                <img src="images/Logo.png" alt="Logo Gánh Rong" class="logo-fade-in">
                 <p class="text-lg font-semibold mb-5 text-black" style="color:#000">GAME GÁNH RONG 3D VIỆT NAM</p>
                 <!--<p class="text-2xl md:text-3xl mb-8 leading-relaxed font-light text-black text-reveal" style="color:#000" data-aos-delay="200">
                     Game đậm chất Việt Nam những năm 90.
@@ -1077,6 +1096,13 @@
                         loadingScreen.classList.add('hidden');
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
+                            // Trigger logo fade-in animation after loading is complete
+                            const logo = document.querySelector('.logo-fade-in');
+                            if (logo) {
+                                setTimeout(() => {
+                                    logo.classList.add('animate');
+                                }, 300);
+                            }
                         }, 800);
                     }, 500);
                 }
