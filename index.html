@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="hero-visual" data-aos="fade-left">
-                <img src="images/Artboard1.png" alt="Gánh Rong Key Visual" class="animate-float hero-main-img">
+                <img src="images/emoji/11.png" alt="Gánh Rong Key Visual" class="animate-float hero-main-img">
                 <img src="images/avatar.png" alt="Mascot" class="hero-mascot animate-float-delayed">
             </div>
         </div>
@@ -145,7 +145,39 @@
     <section id="about" class="about-section">
         <div class="container grid-2">
             <div class="about-visual" data-aos="fade-right">
-                <img src="images/Artboard2.png" alt="About Gánh Rong" class="rounded-img shadow-glow">
+                <!-- Image Slider -->
+                <div class="image-slider">
+                    <div class="slider-container">
+                        <div class="slide active">
+                            <img src="images/anh1.jpg" alt="Gameplay 1" class="rounded-img shadow-glow">
+                        </div>
+                        <div class="slide">
+                            <img src="images/anh2.jpg" alt="Gameplay 2" class="rounded-img shadow-glow">
+                        </div>
+                        <div class="slide">
+                            <img src="images/anh3.jpg" alt="Gameplay 3" class="rounded-img shadow-glow">
+                        </div>
+                        <div class="slide">
+                            <img src="images/anh4.jpg" alt="Gameplay 4" class="rounded-img shadow-glow">
+                        </div>
+                        <div class="slide">
+                            <img src="images/Artboard7.png" alt="Map Design" class="rounded-img shadow-glow">
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="slider-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+                    
+                    <!-- Dots Navigation -->
+                    <div class="slider-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                        <span class="dot" data-slide="4"></span>
+                    </div>
+                </div>
             </div>
             <div class="about-content" data-aos="fade-left">
                 <h2 class="section-title text-left">CÂU CHUYỆN CỦA CHÚNG TÔI</h2>
@@ -179,48 +211,61 @@
             <h2 class="section-title">NHÂN VẬT</h2>
             <p class="section-subtitle">Gặp gỡ những người bạn đồng hành</p>
 
-            <div class="character-carousel">
-                <!-- Character 1 -->
-                <div class="character-card active" data-char="1">
-                    <div class="char-img">
-                        <img src="images/Artboard4.png" alt="Nhân vật 1">
+            <div class="character-showcase">
+                <!-- Character Info Panel (Left) -->
+                <div class="character-info-panel" data-aos="fade-right">
+                    <div class="char-name-wrapper">
+                        <h3 class="char-name" id="char-name">Bé An</h3>
+                        <span class="char-quote" id="char-quote">"Báo mới đây, tin nóng hổi!"</span>
                     </div>
-                    <div class="char-info">
-                        <h3>Bé An</h3>
-                        <p class="char-role">Người Bán Báo</p>
-                        <p class="char-bio">Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông
-                            tin quý giá cho mọi người chơi.</p>
+                    
+                    <div class="char-role-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="char-role">Người Bán Báo</span>
+                    </div>
+                    
+                    <p class="char-description" id="char-description">
+                        Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông tin quý giá cho mọi người chơi. Cậu bé có thể đưa bạn những tin tức mới nhất về các sự kiện trong game.
+                    </p>
+                    
+                    <!-- Character Thumbnails -->
+                    <div class="char-thumbnails">
+                        <button class="char-nav-btn prev-char"><i class="fas fa-chevron-left"></i></button>
+                        
+                        <div class="thumbnails-wrapper">
+                            <div class="char-thumb active" data-char="0">
+                                <img src="images/Artboard4.png" alt="Bé An">
+                                <span class="thumb-name">Bé An</span>
+                            </div>
+                            <div class="char-thumb" data-char="1">
+                                <img src="images/Artboard5.png" alt="Chú Ba">
+                                <span class="thumb-name">Chú Ba</span>
+                            </div>
+                            <div class="char-thumb" data-char="2">
+                                <img src="images/Artboard6.png" alt="Cô Tư">
+                                <span class="thumb-name">Cô Tư</span>
+                            </div>
+                        </div>
+                        
+                        <button class="char-nav-btn next-char"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-                <!-- Character 2 -->
-                <div class="character-card" data-char="2">
-                    <div class="char-img">
-                        <img src="images/Artboard5.png" alt="Nhân vật 2">
+                
+                <!-- Character Image (Right) -->
+                <div class="character-image-panel" data-aos="fade-left">
+                    <div class="char-image-container">
+                        <div class="char-image active" data-char="0">
+                            <img src="images/Artboard4.png" alt="Bé An">
+                        </div>
+                        <div class="char-image" data-char="1">
+                            <img src="images/Artboard5.png" alt="Chú Ba">
+                        </div>
+                        <div class="char-image" data-char="2">
+                            <img src="images/Artboard6.png" alt="Cô Tư">
+                        </div>
                     </div>
-                    <div class="char-info">
-                        <h3>Chú Ba</h3>
-                        <p class="char-role">Thợ Sửa Xe</p>
-                        <p class="char-bio">Trầm tính nhưng tốt bụng. Chú Ba luôn sẵn sàng giúp đỡ mọi người sửa chữa đồ
-                            đạc hỏng hóc.</p>
-                    </div>
+                    <div class="char-image-bg"></div>
                 </div>
-                <!-- Character 3 -->
-                <div class="character-card" data-char="3">
-                    <div class="char-img">
-                        <img src="images/Artboard6.png" alt="Nhân vật 3">
-                    </div>
-                    <div class="char-info">
-                        <h3>Cô Tư</h3>
-                        <p class="char-role">Bán Chè</p>
-                        <p class="char-bio">Gánh chè của cô Tư là nơi tụ tập của lũ trẻ trong xóm. Cô luôn có những câu
-                            chuyện ma mị để kể.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-controls">
-                <button class="control-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="control-btn next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -233,25 +278,25 @@
         <div class="timeline">
             <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-content">
-                    <h3>Q4 2024</h3>
+                    <h3>Q1 2025</h3>
                     <p>Khởi động dự án & Xây dựng ý tưởng</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="timeline-content">
-                    <h3>Q1 2025</h3>
+                    <h3>Q2 2025</h3>
                     <p>Ra mắt bản Alpha Test & Nhận phản hồi</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="timeline-content">
-                    <h3>Q2 2025</h3>
+                    <h3>Q3 2025</h3>
                     <p>Mở đăng ký trước & Sự kiện cộng đồng</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="timeline-content">
-                    <h3>Q3 2025</h3>
+                    <h3>Q2 2026</h3>
                     <p>Chính thức phát hành (Open Beta)</p>
                 </div>
             </div>
@@ -304,7 +349,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Gánh Rong Project. All rights reserved.</p>
+                <p>&copy; 2025 Gánh Rong Project. All rights reserved.</p>
             </div>
         </div>
     </footer>

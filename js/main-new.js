@@ -75,6 +75,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ===== Character Showcase (New Design) =====
+    const characterShowcase = document.querySelector('.character-showcase');
+    if (characterShowcase) {
+        const charThumbs = document.querySelectorAll('.char-thumb');
+        const charImages = document.querySelectorAll('.char-image');
+        const prevCharBtn = document.querySelector('.prev-char');
+        const nextCharBtn = document.querySelector('.next-char');
+        const charNameEl = document.getElementById('char-name');
+        const charQuoteEl = document.getElementById('char-quote');
+        const charRoleEl = document.getElementById('char-role');
+        const charDescEl = document.getElementById('char-description');
+        
+        let currentCharIndex = 0;
+        
+        // Character Data
+        const charactersData = [
+            {
+                name: 'Bé An',
+                quote: '"Báo mới đây, tin nóng hổi!"',
+                role: 'Người Bán Báo',
+                description: 'Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông tin quý giá cho mọi người chơi. Cậu bé có thể đưa bạn những tin tức mới nhất về các sự kiện trong game.'
+            },
+            {
+                name: 'Chú Ba',
+                quote: '"Xe hỏng đưa đây, tui sửa cho!"',
+                role: 'Thợ Sửa Xe',
+                description: 'Trầm tính nhưng tốt bụng. Chú Ba luôn sẵn sàng giúp đỡ mọi người sửa chữa đồ đạc hỏng hóc. Chú có thể nâng cấp xe gánh của bạn để di chuyển nhanh hơn.'
+            },
+            {
+                name: 'Cô Tư',
+                quote: '"Chè ngon lắm nè, ăn đi con!"',
+                role: 'Bán Chè',
+                description: 'Gánh chè của cô Tư là nơi tụ tập của lũ trẻ trong xóm. Cô luôn có những câu chuyện ma mị để kể. Ghé thăm cô để học công thức chè bí truyền.'
+            }
+        ];
+        
+        function updateCharacter(index) {
+            // Wrap around
+            if (index >= charactersData.length) {
+                currentCharIndex = 0;
+            } else if (index < 0) {
+                currentCharIndex = charactersData.length - 1;
+            } else {
+                currentCharIndex = index;
+            }
+            
+            const charData = charactersData[currentCharIndex];
+            
+            // Update info with animation
+            if (charNameEl) charNameEl.textContent = charData.name;
+            if (charQuoteEl) charQuoteEl.textContent = charData.quote;
+            if (charRoleEl) charRoleEl.textContent = charData.role;
+            if (charDescEl) charDescEl.textContent = charData.description;
+            
+            // Update thumbnails
+            charThumbs.forEach((thumb, i) => {
+                thumb.classList.remove('active');
+                if (i === currentCharIndex) {
+                    thumb.classList.add('active');
+                }
+            });
+            
+            // Update images
+            charImages.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === currentCharIndex) {
+                    img.classList.add('active');
+                }
+            });
+        }
+        
+        // Click on thumbnails
+        charThumbs.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                updateCharacter(index);
+            });
+        });
+        
+        // Navigation buttons
+        if (prevCharBtn) {
+            prevCharBtn.addEventListener('click', () => {
+                updateCharacter(currentCharIndex - 1);
+            });
+        }
+        
+        if (nextCharBtn) {
+            nextCharBtn.addEventListener('click', () => {
+                updateCharacter(currentCharIndex + 1);
+            });
+        }
+    }
+
     // Sound Toggle
     const soundToggle = document.getElementById('sound-toggle');
     const bgMusic = document.getElementById('bg-music');
@@ -115,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.video-modal-close');
     const iframe = document.getElementById('youtube-player');
     // Placeholder video (Ganh Rong trailer or generic)
-    const videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+    const videoUrl = "https://www.youtube.com/embed/apskSb6WuAA";
 
     if (videoBtn && videoModal && closeBtn) {
         videoBtn.addEventListener('click', (e) => {
@@ -135,5 +227,143 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (iframe) iframe.src = ""; // Stop video
             }
         });
+    }
+
+    // ===== Image Slider =====
+    const imageSlider = document.querySelector('.image-slider');
+    if (imageSlider) {
+        const slides = imageSlider.querySelectorAll('.slide');
+        const dots = imageSlider.querySelectorAll('.dot');
+        const prevArrow = imageSlider.querySelector('.prev-arrow');
+        const nextArrow = imageSlider.querySelector('.next-arrow');
+        let currentSlide = 0;
+        let slideInterval;
+        const autoSlideDelay = 4000; // 4 seconds
+
+        // Function to show specific slide
+        function showSlide(index) {
+            // Wrap around
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            // Update slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        // Next slide
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Start auto-slide
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, autoSlideDelay);
+        }
+
+        // Stop auto-slide
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Reset auto-slide (restart timer)
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Event listeners for arrows
+        if (prevArrow) {
+            prevArrow.addEventListener('click', () => {
+                prevSlide();
+                resetAutoSlide();
+            });
+        }
+
+        if (nextArrow) {
+            nextArrow.addEventListener('click', () => {
+                nextSlide();
+                resetAutoSlide();
+            });
+        }
+
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetAutoSlide();
+            });
+        });
+
+        // Pause auto-slide on hover
+        imageSlider.addEventListener('mouseenter', stopAutoSlide);
+        imageSlider.addEventListener('mouseleave', startAutoSlide);
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        imageSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoSlide();
+        }, { passive: true });
+
+        imageSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoSlide();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            if (diff > swipeThreshold) {
+                nextSlide(); // Swipe left
+            } else if (diff < -swipeThreshold) {
+                prevSlide(); // Swipe right
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // Only if slider is in viewport
+            const rect = imageSlider.getBoundingClientRect();
+            const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isInViewport) {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                    resetAutoSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                    resetAutoSlide();
+                }
+            }
+        });
+
+        // Start auto-slide
+        startAutoSlide();
     }
 });
