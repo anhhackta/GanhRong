@@ -1,1776 +1,336 @@
-<html lang="vi"><head>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gánh Rong - Game của người Việt</title>
-    <meta name="description" content="Gánh Rong - Game của người Việt">
+    <title>Gánh Rong - Game Nhập Vai 3D Đậm Chất Việt</title>
+    <meta name="description"
+        content="Gánh Rong - Game nhập vai 3D tái hiện Việt Nam những năm 90. Đăng ký trước ngay để nhận quà độc quyền!">
     <link rel="icon" href="images/logo32.png" type="image/png">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FC Comic Jungle Font -->
-    <style>
-        @font-face {
-            font-family: 'FC Comic Jungle';
-            src: url('fonts/FC-Comic-Jungle.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-    </style>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
     <link href="css/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
 
-    <style>
-        :root {
-            --color-black-premium: #080C14;
-            --color-white-premium: #fdfaef;
-            --color-blue-vibrant: #C81F12;
-            --color-blue-dark: #0D4FC9;
-            --color-blue-light: #CFDFFF;
-            --color-orange-vibrant: #D88307;
-            --color-orange-dark: #C2410C;
-            --color-purple-luxe: #9333EA;
-            --color-purple-dark: #581C87;
-            --color-green-success: #16A34A;
-            --color-red-alert: #DC2626;
-            --color-text-main: #080C14;
-            --color-text-redtext: #C81F12;
-            --color-text-secondary: #334155;
-            --color-text-info: #64748B;
-            --color-dark-bg-luxe: #030711;
-            --color-dark-text-main: #fdfaef;
-            --color-dark-text-secondary: #CBD5E1;
-            --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-            --ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --color-blue-btn:#05729D;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fdfaef;
-            color: var(--color-text-main);
-            overflow-x: hidden;
-        }
-        h1, h2, h3 {
-            font-family: 'Chakra Petch', sans-serif;
-            color: var(--color-black-premium);
-            font-weight: 800;
-        }
-        
-        .font-bold {
-            font-family: 'FC Comic Jungle', 'Chakra Petch', sans-serif;
-        }
-        .container { max-width: 1400px; padding-left: 2rem; padding-right: 2rem; margin-left: auto; margin-right: auto; }
-        .back-to-top {
-            position: fixed; bottom: 32px; right: 32px; z-index: 9999;
-            background: linear-gradient(135deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
-            border: none; border-radius: 50%; width: 48px; height: 48px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-            cursor: pointer; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .back-to-top.show { opacity: 1; pointer-events: auto; }
-        .back-to-top svg { width: 28px; height: 28px; fill: #fdfaef; }
-        @media (max-width: 640px) {
-            .back-to-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
-            .back-to-top svg { width: 22px; height: 22px; }
-        }
-        .bg-biomorphic-noise {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: cover; background-blend-mode: overlay; opacity: 0.03;
-        }
-        .glass-effect {
-            background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-        }
-        .magnetic-hover { transition: transform 0.3s var(--ease-out-cubic); will-change: transform; }
-        .magnetic-hover:hover { transform: scale(1.05) translateZ(0); }
-        .cta-button {
-            background: var(--color-blue-btn);
-            color: var(--color-white-premium); border: none; padding: 1rem 2.5rem; border-radius: 9999px;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-            transition: all 0.3s var(--ease-out-expo); box-shadow: 0 8px 15px rgba(5, 114, 157, 0.3);
-            position: relative; overflow: hidden; z-index: 1;
-        }
-        .cta-button:hover { background: var(--color-blue-btn); box-shadow: 0 12px 20px rgba(5, 114, 157, 0.4); transform: translateY(-3px); }
-        .cta-button:active { transform: translateY(1px); }
-        .cta-button::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.1); opacity: 0; transition: opacity 0.3s var(--ease-out-cubic); z-index: -1;
-        }
-        .cta-button:hover::after { opacity: 1; }
-        
-        /* Register Image Button Style */
-        .register-image-button {
-            display: inline-block;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        
-        .register-image-button:hover {
-            transform: scale(1.05);
-        }
-        
-        .register-btn-image {
-            max-width: 200px;
-            height: auto;
-            transition: all 0.3s ease;
-            filter: hue-rotate(0deg);
-        }
-        
-        .register-image-button:hover .register-btn-image {
-            filter: hue-rotate(200deg) saturate(1.2);
-        }
-        
-        .text-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
-        .text-reveal.aos-animate { opacity: 1; transform: translateY(0); }
-        .depth-element { position: relative; perspective: 1000px; }
-        .depth-element-inner {
-            transform: translateZ(0); transition: transform 0.5s var(--ease-in-out-sine), box-shadow 0.5s var(--ease-in-out-sine);
-            box-shadow: none;
-        }
-        .depth-element:hover .depth-element-inner {
-            transform: translateZ(20px); box-shadow: none;
-        }
-        .neo-brutal-card {
-            border: 3px solid var(--color-black-premium); background-color: var(--color-white-premium);
-            box-shadow: 8px 8px 0px var(--color-blue-vibrant); transition: all 0.3s var(--ease-out-cubic);
-        }
-        .neo-brutal-card:hover { box-shadow: 12px 12px 0px var(--color-orange-vibrant); transform: translate(-4px, -4px); }
-        input[type="email"], input[type="text"] {
-            border: 2px solid var(--color-text-info); background-color: var(--color-white-premium);
-            color: var(--color-black-premium);
-        }
-        input[type="email"]:focus, input[type="text"]:focus {
-            border-color: var(--color-blue-vibrant); outline: none; box-shadow: 0 0 0 3px var(--color-blue-light);
-        }
-        button:focus { outline: 3px solid var(--color-orange-vibrant); outline-offset: 2px; }
-        .text-main-contrast { color: var(--color-black-premium); }
-        .bg-dark-contrast { background-color: var(--color-dark-bg-luxe); }
-        .text-dark-on-light-contrast { color: var(--color-text-main); }
-        .text-light-on-dark-contrast { color: var(--color-dark-text-main); }
-        .mobile-menu-open { display: flex !important; }
-        .accordion-content { transition: max-height 0.5s var(--ease-in-out-sine); }
-        
-        /* Loading Screen Styles */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
-        }
-        
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-content {
-            text-align: center;
-            color: var(--color-text-main);
-        }
-        
-        .loading-title {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .loading-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .loading-progress {
-            width: 200px;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 1rem auto 0.5rem auto;
-        }
-        
-        .loading-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-blue-vibrant), var(--color-orange-vibrant));
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .loading-percentage {
-            margin: 0.5rem auto 0 auto;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            text-align: center;
-        }
-        
-        /* Logo fade-in animation */
-        .logo-fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-        }
-        
-        .logo-fade-in.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style-new.css">
+</head>
 
-                <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
-                <meta name="mobile-web-app-capable" content="yes">
-                <meta name="apple-mobile-web-app-capable" content="yes">
-                <meta name="apple-mobile-web-app-title" content="Tạo trang web">
-                <meta name="theme-color" content="#fdfaef">
-                <link rel="apple-touch-icon" href="images/192.png">
-            
-                <style>
-                    /* Floating Install Button */
-                    .install-button {
-                        position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: #fdfaef;
-                          color: #000000;
-                        border: none;
-                        border-radius: 50px;
-                        padding: 12px 24px;
-                        font-size: 16px;
-                        font-weight: 600;
-                        cursor: pointer;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        z-index: 9999;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        animation: slideIn 0.5s ease-out;
-                    }
-                    
-                    .install-button:hover {
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-                    }
-                    
-                    .install-button:active {
-                        transform: translateY(0);
-                    }
-                    
-                    @keyframes slideIn {
-                        from {
-                            transform: translateY(100px);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateY(0);
-                            opacity: 1;
-                        }
-                    }
-                    
-                    /* iOS Install Banner */
-                    .ios-banner {
-                        position: fixed;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        background: rgba(255, 255, 255, 0.98);
-                        backdrop-filter: blur(10px);
-                        border-top: 1px solid #e0e0e0;
-                        padding: 12px;
-                        z-index: 9998;
-                        animation: slideUp 0.3s ease-out;
-                    }
-                    
-                    .ios-banner-content {
-                        display: flex;
-                        align-items: center;
-                        gap: 12px;
-                        max-width: 600px;
-                        margin: 0 auto;
-                    }
-                    
-                    .ios-icon {
-                        width: 48px;
-                        height: 48px;
-                        border-radius: 12px;
-                    }
-                    
-                    .ios-text {
-                        flex: 1;
-                    }
-                    
-                    .ios-title {
-                        font-weight: 600;
-                        font-size: 16px;
-                        color: #333;
-                    }
-                    
-                    .ios-subtitle {
-                        font-size: 14px;
-                        color: #666;
-                        margin-top: 2px;
-                        display: flex;
-                        align-items: center;
-                        gap: 4px;
-                    }
-                    
-                    .ios-close {
-                        background: none;
-                        border: none;
-                        font-size: 24px;
-                        color: #999;
-                        cursor: pointer;
-                        padding: 4px;
-                    }
-                    
-                    @keyframes slideUp {
-                        from {
-                            transform: translateY(100%);
-                        }
-                        to {
-                            transform: translateY(0);
-                        }
-                    }
-                    
-                    /* Success animation */
-                    .install-success {
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: rgba(76, 175, 80, 0.95);
-                        color: white;
-                        padding: 20px 40px;
-                        border-radius: 12px;
-                        font-size: 18px;
-                        font-weight: 600;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                        animation: successPop 0.5s ease-out;
-                        z-index: 10000;
-                    }
-                    
-                    @keyframes successPop {
-                        0% {
-                            transform: translate(-50%, -50%) scale(0);
-                            opacity: 0;
-                        }
-                        50% {
-                            transform: translate(-50%, -50%) scale(1.1);
-                        }
-                        100% {
-                            transform: translate(-50%, -50%) scale(1);
-                            opacity: 1;
-                        }
-                    }
-                </style>
-            <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fdfaef;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fdfaef;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-8{bottom:-2rem}.-right-8{right:-2rem}.bottom-4{bottom:1rem}.left-0{left:0px}.left-4{left:1rem}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-6{top:1.5rem}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-32{height:8rem}.h-64{height:16rem}.h-auto{height:auto}.h-full{height:100%}.max-h-0{max-height:0px}.min-h-screen{min-height:100vh}.w-32{width:8rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.-rotate-1{--tw-rotate:-1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-95{--tw-bg-opacity:0.95}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-light{font-weight:300}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:rotate-1:hover{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:rotate-0{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:rotate-12{--tw-rotate:12deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-150{--tw-scale-x:1.5;--tw-scale-y:1.5;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-20{opacity:0.2}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:items-start{align-items:flex-start}.md\:p-12{padding:3rem}.md\:text-left{text-align:left}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-8xl{font-size:6rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:p-8{padding:2rem}}</style><style id="editing-styles">
-      [data-editable] {
-        outline: 2px dashed #FF9800 !important;
-        cursor: text !important;
-        position: relative !important;
-      }
-      
-      [data-editable]:hover {
-        background-color: rgba(255,152,0,0.1) !important;
-      }
-      
-      [data-image-editable] {
-        outline: 2px dashed #4CAF50 !important;
-        cursor: pointer !important;
-        position: relative !important;
-      }
-      
-      [data-image-editable]:hover {
-        outline-color: #2E7D32 !important;
-        filter: brightness(1.1) !important;
-      }
-      
-      [data-color-editable] {
-        outline: 2px dashed #2196F3 !important;
-        cursor: pointer !important;
-        position: relative !important;
-      }
-      
-      [data-color-editable]:hover {
-        outline-color: #1976D2 !important;
-        opacity: 0.8 !important;
-      }
-    </style>
-                <link rel="manifest" href="/api/manifest/a0e319284cd23a93">
-                <meta name="mobile-web-app-capable" content="yes">
-                <meta name="apple-mobile-web-app-capable" content="yes">
-                <meta name="apple-mobile-web-app-title" content="Tạo trang web">
-                <meta name="theme-color" content="#fdfaef">
-                <link rel="apple-touch-icon" href="images/192.png">
-            
-                <style>
-                    /* Floating Install Button */
-                    .install-button {
-                        position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: #fdfaef;
-                          color: #000000;
-                        border: none;
-                        border-radius: 50px;
-                        padding: 12px 24px;
-                        font-size: 16px;
-                        font-weight: 600;
-                        cursor: pointer;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        z-index: 9999;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        animation: slideIn 0.5s ease-out;
-                    }
-                    
-                    .install-button:hover {
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-                    }
-                    
-                    .install-button:active {
-                        transform: translateY(0);
-                    }
-                    
-                    @keyframes slideIn {
-                        from {
-                            transform: translateY(100px);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateY(0);
-                            opacity: 1;
-                        }
-                    }
-                    
-                    /* iOS Install Banner */
-                    .ios-banner {
-                        position: fixed;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        background: rgba(255, 255, 255, 0.98);
-                        backdrop-filter: blur(10px);
-                        border-top: 1px solid #e0e0e0;
-                        padding: 12px;
-                        z-index: 9998;
-                        animation: slideUp 0.3s ease-out;
-                    }
-                    
-                    .ios-banner-content {
-                        display: flex;
-                        align-items: center;
-                        gap: 12px;
-                        max-width: 600px;
-                        margin: 0 auto;
-                    }
-                    
-                    .ios-icon {
-                        width: 48px;
-                        height: 48px;
-                        border-radius: 12px;
-                    }
-                    
-                    .ios-text {
-                        flex: 1;
-                    }
-                    
-                    .ios-title {
-                        font-weight: 600;
-                        font-size: 16px;
-                        color: #333;
-                    }
-                    
-                    .ios-subtitle {
-                        font-size: 14px;
-                        color: #666;
-                        margin-top: 2px;
-                        display: flex;
-                        align-items: center;
-                        gap: 4px;
-                    }
-                    
-                    .ios-close {
-                        background: none;
-                        border: none;
-                        font-size: 24px;
-                        color: #999;
-                        cursor: pointer;
-                        padding: 4px;
-                    }
-                    
-                    @keyframes slideUp {
-                        from {
-                            transform: translateY(100%);
-                        }
-                        to {
-                            transform: translateY(0);
-                        }
-                    }
-                    
-                    /* Success animation */
-                    .install-success {
-                        position: fixed;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: rgba(76, 175, 80, 0.95);
-                        color: white;
-                        padding: 20px 40px;
-                        border-radius: 12px;
-                        font-size: 18px;
-                        font-weight: 600;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                        animation: successPop 0.5s ease-out;
-                        z-index: 10000;
-                    }
-                    
-                    @keyframes successPop {
-                        0% {
-                            transform: translate(-50%, -50%) scale(0);
-                            opacity: 0;
-                        }
-                        50% {
-                            transform: translate(-50%, -50%) scale(1.1);
-                        }
-                        100% {
-                            transform: translate(-50%, -50%) scale(1);
-                            opacity: 1;
-                        }
-                    }
-                </style>
-            </head>
-<body class="antialiased text-dark-on-light-contrast" data-aos-easing="ease-out-cubic" data-aos-duration="1000" data-aos-delay="0">
+<body>
 
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
-            <dotlottie-wc src="https://lottie.host/8ada8e47-531a-475a-91b9-f88470fea3c8/5pcARwBk7y.lottie" style="width: 500px;height: 500px" autoplay loop></dotlottie-wc>
             <h1 class="loading-title">GÁNH RONG</h1>
-            <p class="loading-subtitle">Game của người Việt</p>
-            <div class="loading-progress">
-                <div id="loading-progress-bar" class="loading-progress-bar"></div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
-            <div id="loading-percentage" class="loading-percentage">0%</div>
         </div>
     </div>
 
-    <header class="sticky top-0 z-50 py-4 glass-effect aos-init aos-animate" data-aos="fade-down" data-aos-duration="1000">
-        <nav class="container flex items-center justify-between relative">
-            <div class="flex items-center min-w-0">
-                <a href="#" class="flex items-center min-w-0">
-                    <img src="images/Logo.png" alt="Logo Gánh Rong" class="w-12 h-12 rounded-full border-2 border-blue-vibrant bg-white shadow mr-3">
-                </a>
-                <span class="gradient-text-header text-2xl md:text-3xl font-bold tracking-tight" style="color: var(--color-blue-vibrant);">GÁNH RONG</span>
-            </div>
-            <!-- Logo VTC Academy ở giữa -->
-            <div class="absolute left-1/2 transform -translate-x-1/2">
-                <a href="https://vtc.edu.vn/" target="_blank" rel="noopener noreferrer" class="flex items-center hover:scale-105 transition-transform duration-300">
-                    <img src="images/R.png" alt="VTC Academy Logo" class="h-7 md:h-9">
-                </a>
-            </div>
-        
-            <div class="hidden md:flex items-center space-x-8 ml-auto">
-                <a href="#about" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Về Game</a>
-                <a href="#features" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Điểm Nổi Bật</a>
-                <a href="#gallery" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Thư Viện</a>
-                <a href="#pre-register" class="text-lg font-semibold hover:text-blue-vibrant transition-colors magnetic-hover">Đăng Ký Trước</a>
-            </div>
-            <div class="flex items-center space-x-2 ml-4">
-                <button id="sound-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Bật/Tắt âm thanh">
-                    <svg id="sound-on" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/></svg>
-                    <svg id="sound-off" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06A4.978 4.978 0 0016.5 12z" fill="currentColor"/><path d="M19.5 12c0-3.04-1.64-5.64-4.5-6.32v2.06c1.76.61 3 2.28 3 4.26s-1.24 3.65-3 4.26v2.06c2.86-.68 4.5-3.28 4.5-6.32z" fill="currentColor"/><path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><line x1="21" y1="3" x2="3" y2="21" stroke="red" stroke-width="2"/></svg>
+    <!-- Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="images/Logo.png" alt="Gánh Rong Logo">
+                <span>GÁNH RONG</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#about" class="nav-link">Giới Thiệu</a>
+                <a href="#features" class="nav-link">Tính Năng</a>
+                <a href="#characters" class="nav-link">Nhân Vật</a>
+                <a href="#team" class="nav-link">Đội Ngũ</a>
+                <a href="#pre-register" class="btn btn-primary">Đăng Ký Ngay</a>
+            </nav>
+
+            <div class="header-controls">
+                <button id="sound-toggle" class="icon-btn" title="Bật/Tắt âm thanh">
+                    <i class="fas fa-volume-mute"></i>
                 </button>
-                <!--<button id="mode-toggle" class="p-2 rounded-full hover:bg-blue-100 transition" title="Chuyển chế độ sáng/tối">
-                    <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="currentColor"/></svg>
-                    <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
-                </button>-->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-blue-100 transition text-3xl focus:outline-none z-20">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
-            <div id="mobile-menu" class="fixed inset-0 bg-dark-bg-luxe bg-opacity-95 flex-col items-center justify-center space-y-8 text-dark-text-main text-2xl md:hidden transition-opacity duration-300 opacity-0 z-50 hidden">
-                <button class="absolute top-6 right-6 text-dark-text-main text-4xl focus:outline-none" id="close-mobile-menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-                <a href="#about" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Về Game</a>
-                <a href="#features" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">Điểm Nổi Bật</a>
-                <a href="#gallery" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">Thư Viện</a>
-                <a href="#pre-register" class="block py-4 hover:text-orange-vibrant transition-colors aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">Đăng Ký Trước</a>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <section id="hero" class="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-gradient-to-br from-blue-vibrant to-purple-luxe">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <!-- Đã loại bỏ div lỗi style background-image ở hero section -->
+    <audio id="bg-music" loop>
+        <source src="audio/bg-music.mp3" type="audio/mpeg">
+    </audio>
 
-        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="text-black aos-init aos-animate text-center" data-aos="fade-right" data-aos-duration="1200">
-                <img src="images/Logo.png" alt="Logo Gánh Rong" class="logo-fade-in">
-                <p class="text-lg font-semibold mb-5 text-black" style="color:#000">GAME GÁNH RONG 3D VIỆT NAM</p>
-                <!--<p class="text-2xl md:text-3xl mb-8 leading-relaxed font-light text-black text-reveal" style="color:#000" data-aos-delay="200">
-                    Game đậm chất Việt Nam những năm 90.
-                </p>/-->
-                <div data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">
-                    <a href="#pre-register" class="register-image-button">
-                        <img src="images/headerYYBtn.png" alt="Đăng ký ngay" class="register-btn-image">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg">
+            <!-- Placeholder for video or parallax bg -->
+            <div class="overlay"></div>
+        </div>
+
+        <div class="container hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1 class="hero-title">HÀNH TRÌNH VỀ MIỀN KÝ ỨC</h1>
+                <p class="hero-subtitle">Game nhập vai 3D tái hiện chân thực Việt Nam những năm 90</p>
+                <div class="hero-cta">
+                    <a href="#pre-register" class="btn btn-primary btn-lg">
+                        <i class="fas fa-scroll"></i> Đăng Ký Trước
+                    </a>
+                    <a href="#video-trailer" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-play"></i> Xem Trailer
                     </a>
                 </div>
             </div>
-            <div class="relative flex justify-center items-center aos-init aos-animate" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
-                <div class="neo-brutal-card p-4 lg:p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-in-out-sine">
-                    <img src="images/Artboard1.png" alt="Gánh Rong Chibi Character" class="w-full h-auto rounded-lg shadow-2xl relative z-10 border-4 border-orange-vibrant">
-                    <div class="absolute inset-0 bg-purple-luxe opacity-20 transform -rotate-3 transition-transform duration-500 ease-in-out-sine z-0"></div>
-                </div>
-            </div>
-            
-            <!-- Avatar nhân vật ở góc phải dưới - di chuyển ra ngoài -->
-            <div class="absolute bottom-8 right-4 z-20">
-                <img src="images/avatar.png" alt="Gánh Rong Avatar" class="w-64 h-128 md:w-82 md:h-164 transform hover:scale-140 hover:-rotate-3 transition-all duration-300">
-            </div>
-            
-        </div>
-    </section>
-
-    <section id="about" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="depth-element aos-init aos-animate" data-aos="fade-right" data-aos-duration="1000">
-                <div class="depth-element-inner neo-brutal-card p-6 lg:p-8 relative z-10" style="background-color: #fdfaef;">
-                    
-                    <h2 class="text-3xl font-bold mb-6 leading-tight"style="color: var(--color-blue-vibrant);">
-                        Gánh Rong Ký Sự phiêu Lưu Ký
-                    </h2>
-                    <h2 class="text-2xl font-semibold mb-6 text-orange-vibrant leading-tight">
-                        Đây là một dự án game 3D do học sinh của VTC Academy thực hiện, tái hiện hình ảnh đời sống đường phố Việt Nam qua lối chơi nhẹ nhàng và phong cách Chibi dễ thương. Người chơi sẽ hóa thân thành người bán hàng rong, khám phá các khu phố, tương tác với khách hàng và nâng cấp gian hàng của mình. Game mang đậm bản sắc văn hóa Việt, từ đồ họa đến âm thanh, tạo cảm giác gần gũi và thú vị.
-                    </h2>
-                    <p class="text-xl leading-relaxed text-text-secondary text-reveal mb-4">
-                        Gánh Rong là cánh cửa thời gian đưa bạn trở lại không gian Việt Nam những năm 90, với những con hẻm nhỏ, mái ngói rêu phong và ký ức tuổi thơ tươi đẹp.
-                    </p>
-                    <p class="text-lg leading-relaxed text-text-info text-reveal">
-                        Trong thế giới chibi đầy màu sắc, bạn sẽ gặp gỡ những nhân vật đáng yêu, trải nghiệm những câu chuyện ấm áp và khám phá những bí mật ẩn giấu. Chuẩn bị cho một cuộc phiêu lưu đầy hoài niệm và kỳ diệu!
-                    </p>
-                    <div class="absolute top-4 right-4 text-6xl text-purple-luxe opacity-10">
-                        <i class="fas fa-camera-retro"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="relative aos-init aos-animate" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <img src="images/Artboard2.png" alt="Retro Vietnam Scene" class="w-full h-auto rounded-lg shadow-2xl neo-brutal-card transform -rotate-2 hover:rotate-1 transition-transform duration-500 ease-in-out-sine">
-                <div class="absolute top-0 left-0 w-full h-full bg-blue-vibrant opacity-10 transform -rotate-2 z-0"></div>
+            <div class="hero-visual" data-aos="fade-left">
+                <img src="images/Artboard1.png" alt="Gánh Rong Key Visual" class="animate-float hero-main-img">
+                <img src="images/avatar.png" alt="Mascot" class="hero-mascot animate-float-delayed">
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000; text-shadow: 0 0 10px var(--color-blue-vibrant);">
-                    ĐIỂM NỔI BẬT KHÓ CƯỠNG
-                </h2>
-                <p class="text-xl font-semibold text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
-                    Sự kết hợp hoàn hảo giữa hoài niệm và trải nghiệm hiện đại.
-                </p>
-            </div>
+    <!-- Milestone Section -->
+    <section id="milestones" class="milestone-section">
+        <div class="container">
+            <h2 class="section-title">MỐC ĐĂNG KÝ</h2>
+            <p class="section-subtitle">Chung tay đạt mốc - Nhận quà cực sốc</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                    <div class="depth-element-inner relative z-10">
-                        <i class="fas fa-hat-wizard text-6xl text-purple-luxe mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Thế Giới Chibi Sống Động</h3>
-                        <p class="text-lg text-dark-text-secondary">Đồ họa chibi được vẽ tay tỉ mỉ, tái hiện chân thực khung cảnh Việt Nam xưa với nét đáng yêu độc đáo.</p>
-                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
-                    </div>
+            <div class="milestone-tracker">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="milestone-progress" style="width: 0%"></div>
                 </div>
-                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                    <div class="depth-element-inner relative z-10">
-                        <i class="fas fa-map-marked-alt text-6xl text-orange-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Cốt Truyện Đậm Chất Việt</h3>
-                        <p class="text-lg text-dark-text-secondary">Phiêu lưu qua những câu chuyện gắn liền với văn hóa, truyền thuyết và cuộc sống thường ngày của người Việt.</p>
-                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-purple-luxe opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
-                    </div>
-                </div>
-                <div class="neo-brutal-card bg-dark-bg-luxe p-8 rounded-xl shadow-lg relative overflow-hidden group depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-                    <div class="depth-element-inner relative z-10">
-                        <i class="fas fa-gamepad text-6xl text-blue-vibrant mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-3xl font-bold mb-4" style="color: var(--color-text-redtext);">Lối Chơi Sáng Tạo</h3>
-                        <p class="text-lg text-dark-text-secondary">Kết hợp yếu tố nhập vai, giải đố và tương tác cộng đồng trong một trải nghiệm mới mẻ.</p>
-                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-orange-vibrant opacity-10 rounded-full group-hover:scale-150 transition-transform duration-500 ease-in-out-sine"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="gallery" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-semibold font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
-                    THƯ VIỆN HÌNH ẢNH
-                </h2>
-                <p class="text-xl font-semibold text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
-                    Những khoảnh khắc đẹp lung linh của Gánh Rong.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard3.png" alt="Game Screenshot 1" class="w-full h-64 object-cover rounded-lg transform rotate-1 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-blue-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">Thế giới mở</div>
-                    </div>
-                </div>
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard4.png" alt="Game Screenshot 2" class="w-full h-64 object-cover rounded-lg transform -rotate-1 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-purple-luxe opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">Nhân vật Chibi</div>
-                    </div>
-                </div>
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard5.png" alt="Game Screenshot 3" class="w-full h-64 object-cover rounded-lg transform rotate-2 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-orange-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">Khung cảnh 90s</div>
-                    </div>
-                </div>
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard6.png" alt="Game Screenshot 4" class="w-full h-64 object-cover rounded-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-blue-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">NPC độc đáo</div>
-                    </div>
-                </div>
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard7.png" alt="Game Screenshot 5" class="w-full h-64 object-cover rounded-lg transform rotate-1 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-purple-luxe opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">Hệ thống nhiệm vụ</div>
-                    </div>
-                </div>
-                <div class="relative neo-brutal-card group magnetic-hover depth-element aos-init aos-animate" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
-                    <div class="depth-element-inner">
-                        <img src="images/Artboard8.png" alt="Game Screenshot 6" class="w-full h-64 object-cover rounded-lg transform -rotate-1 group-hover:rotate-0 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-orange-vibrant opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-4 left-4 text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="color: var(--color-blue-dark);">Tương tác thú vị</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pre-register" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10 text-center">
-            <h2 class="text-5xl font-extrabold mb-8 leading-tight text-black text-reveal" style="color:#000; text-shadow: 0 0 10px var(--color-orange-vibrant);">
-                ĐĂNG KÝ TRƯỚC NHẬN TIN MỚI NHẤT!
-            </h2>
-            <p class="text-xl font-semibold text-black mb-12 text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
-                Hãy là người đầu tiên biết khi Gánh Rong chính thức ra mắt và nhận những phần quà độc quyền!
-            </p>
-
-            <div class="max-w-xl mx-auto neo-brutal-card bg-dark-bg-luxe p-8 md:p-12 glass-effect depth-element aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-                <div class="depth-element-inner">
-                    <form action="#" method="POST" class="space-y-6" id="preregister-form">
-                        <p class="text-sm text-dark-text-secondary mt-6">
-                            Lưu trữ thông qua Supabase. <a style="--color-blue-vibrant: #C81F12; color: var(--color-blue-vibrant);">Chúng tôi cam kết bảo mật thông tin của bạn và không chia sẻ với bên thứ ba.</a>
-                        </p>
-                        <div>
-                            <label for="name-prereg" class="sr-only">Tên của bạn</label>
-                            <input type="text" id="name-prereg" name="name" placeholder="Tên của bạn" required class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium); margin-bottom: 1rem;">
+                <div class="milestone-points">
+                    <div class="milestone-point" data-target="10">
+                        <div class="point-marker"></div>
+                        <div class="point-label">10</div>
+                        <div class="point-reward">
+                            <i class="fas fa-coins"></i>
+                            <span>1000 Vàng</span>
                         </div>
-                        <div>
-                            <label for="email-prereg" class="sr-only">Email của bạn</label>
-                            <input type="email" id="email-prereg" name="email" placeholder="Địa chỉ Email của bạn" required class="w-full px-5 py-3 rounded-lg border-2 border-blue-vibrant text-black placeholder-gray-500 focus:ring-blue-vibrant focus:border-blue-vibrant text-lg" style="background-color: var(--color-white-premium);">
+                    </div>
+                    <div class="milestone-point" data-target="50">
+                        <div class="point-marker"></div>
+                        <div class="point-label">50</div>
+                        <div class="point-reward">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Trang Phục SSS</span>
                         </div>
-                        <div>
-                            <button type="submit" class="cta-button w-full font-bold">
-                                ĐĂNG KÝ NGAY
-                            </button>
+                    </div>
+                    <div class="milestone-point" data-target="100">
+                        <div class="point-marker"></div>
+                        <div class="point-label">100</div>
+                        <div class="point-reward">
+                            <i class="fas fa-motorcycle"></i>
+                            <span>Xe Máy Cổ</span>
                         </div>
-                    </form>
-                    <p class="text-sm text-dark-text-secondary mt-6">
-                        <a style="--color-blue-vibrant: #007BFF; color: var(--color-blue-vibrant);">Đăng kí</a> để có thể được mới test game sớm nhất! 
-                    </p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mt-16 flex justify-center items-center space-x-6 text-dark-text-main text-xl">
-                <div class="flex items-center aos-init aos-animate" data-aos="zoom-in" data-aos-delay="600">
-                    <i class="fas fa-users mr-3 text-orange-vibrant text-3xl"></i>
-                    <span class="font-bold ml-1 text-orange-vibrant text-2xl" id="prereg-count"style="color: var(--color-text-redtext);">0</span>
-                    <span class="ml-1 font-bold">người đã đăng ký!</span>
-                </div>
-                <div class="flex items-center aos-init aos-animate" data-aos="zoom-in" data-aos-delay="700">
-                    <i class="fas fa-clock mr-3 text-blue-vibrant text-3xl"></i>
-                    <span class="font-bold"style="color: var(--color-text-redtext);">Sắp ra mắt!</span>
+                <div class="current-count-display">
+                    Hiện tại: <span id="prereg-count">0</span> người đã đăng ký
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-extrabold mb-6 text-main-contrast leading-tight text-reveal">
-                    CÂU HỎI THƯỜNG GẶP
-                </h2>
-                <p class="text-xl font-semibold text-text-secondary text-reveal aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    Mọi thắc mắc của bạn về Gánh Rong sẽ được giải đáp tại đây.
-                </p>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container grid-2">
+            <div class="about-visual" data-aos="fade-right">
+                <img src="images/Artboard2.png" alt="About Gánh Rong" class="rounded-img shadow-glow">
             </div>
+            <div class="about-content" data-aos="fade-left">
+                <h2 class="section-title text-left">CÂU CHUYỆN CỦA CHÚNG TÔI</h2>
+                <p>Gánh Rong là dự án tâm huyết của những người trẻ yêu văn hóa Việt. Chúng tôi muốn tái hiện lại không
+                    khí của những con hẻm nhỏ, tiếng rao hàng rong, và những câu chuyện đời thường giản dị nhưng đầy
+                    tình người.</p>
+                <p>Trong thế giới của Gánh Rong, bạn không chỉ chơi game, mà còn sống lại những ký ức tuổi thơ, nơi mỗi
+                    góc phố đều ẩn chứa một câu chuyện thú vị đang chờ bạn khám phá.</p>
 
-            <div class="max-w-3xl mx-auto space-y-6">
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
-                        <span>Gánh Rong là thể loại game gì?</span>
-                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content overflow-hidden max-h-0" style="">
-                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
-                            Gánh Rong là một tựa game nhập vai phiêu lưu với đồ họa chibi, lấy bối cảnh Việt Nam thập niên 90. Game kết hợp các yếu tố buôn bán và tương tác cộng đồng và NFT
-                        </p>
+                <div class="features-grid-mini">
+                    <div class="feature-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Đồ họa Chibi</span>
                     </div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="true">
-                        <span>Game sẽ ra mắt trên nền tảng nào?</span>
-                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content overflow-hidden max-h-0" style="">
-                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
-                            Hiện tại, Gánh Rong dự kiến ra mắt trên các nền tảng PC và  di động (iOS và Android). Thông tin chi tiết sẽ được công bố sau.
-                        </p>
+                    <div class="feature-item">
+                        <i class="fas fa-music"></i>
+                        <span>Âm nhạc Hoài niệm</span>
                     </div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md accordion-item aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
-                    <button class="flex justify-between items-center w-full text-left text-xl font-semibold py-3 text-main-contrast focus:outline-none accordion-header" aria-expanded="false">
-                        <span>Làm sao để đăng ký trước?</span>
-                        <i class="fas fa-chevron-down text-blue-vibrant transform transition-transform duration-300"></i>
-                    </button>
-                    <div class="accordion-content overflow-hidden max-h-0" style="">
-                        <p class="pt-4 text-lg text-text-secondary border-t border-gray-200 mt-4">
-                            Bạn có thể đăng ký trước ngay trên trang web này bằng cách điền địa chỉ email của mình vào biểu mẫu "Đăng Ký Trước Nhận Tin Mới Nhất!" ở trên.
-                        </p>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>Cộng đồng Gắn kết</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="progress" class="py-24 relative overflow-hidden" style="background-color: #fdfaef;">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
-                    TIẾN ĐỘ PHÁT TRIỂN
-                </h2>
-                <p class="text-xl font-semibold text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
-                    Cập nhật mốc thời gian quan trọng trong quá trình phát triển Gánh Rong.
-                </p>
+    <!-- Character Showcase -->
+    <section id="characters" class="character-section">
+        <div class="container">
+            <h2 class="section-title">NHÂN VẬT</h2>
+            <p class="section-subtitle">Gặp gỡ những người bạn đồng hành</p>
+
+            <div class="character-carousel">
+                <!-- Character 1 -->
+                <div class="character-card active" data-char="1">
+                    <div class="char-img">
+                        <img src="images/Artboard4.png" alt="Nhân vật 1">
+                    </div>
+                    <div class="char-info">
+                        <h3>Bé An</h3>
+                        <p class="char-role">Người Bán Báo</p>
+                        <p class="char-bio">Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông
+                            tin quý giá cho mọi người chơi.</p>
+                    </div>
+                </div>
+                <!-- Character 2 -->
+                <div class="character-card" data-char="2">
+                    <div class="char-img">
+                        <img src="images/Artboard5.png" alt="Nhân vật 2">
+                    </div>
+                    <div class="char-info">
+                        <h3>Chú Ba</h3>
+                        <p class="char-role">Thợ Sửa Xe</p>
+                        <p class="char-bio">Trầm tính nhưng tốt bụng. Chú Ba luôn sẵn sàng giúp đỡ mọi người sửa chữa đồ
+                            đạc hỏng hóc.</p>
+                    </div>
+                </div>
+                <!-- Character 3 -->
+                <div class="character-card" data-char="3">
+                    <div class="char-img">
+                        <img src="images/Artboard6.png" alt="Nhân vật 3">
+                    </div>
+                    <div class="char-info">
+                        <h3>Cô Tư</h3>
+                        <p class="char-role">Bán Chè</p>
+                        <p class="char-bio">Gánh chè của cô Tư là nơi tụ tập của lũ trẻ trong xóm. Cô luôn có những câu
+                            chuyện ma mị để kể.</p>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl mb-2 text-blue-vibrant"><i class="fas fa-lightbulb"></i></div>
-                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Khởi động dự án</div>
-                    <div class="text-text-secondary text-sm">01/2025</div>
-                </div>
-                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl mb-2 text-orange-vibrant"><i class="fas fa-pencil-ruler"></i></div>
-                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Thiết kế & Đồ họa</div>
-                    <div class="text-text-secondary text-sm">02-03/2025</div>
-                </div>
-                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl mb-2 text-purple-luxe"><i class="fas fa-code"></i></div>
-                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Lập trình & Phát triển</div>
-                    <div class="text-text-secondary text-sm">04-06/2025</div>
-                </div>
-                <div class="neo-brutal-card p-6 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-4xl mb-2 text-green-success"><i class="fas fa-rocket"></i></div>
-                    <div class="font-bold text-lg mb-1"style="color: var(--color-blue-dark);">Ra mắt & Phát hành</div>
-                    <div class="text-text-secondary text-sm">Dự kiến 11/2025</div>
-                </div>
+
+            <div class="carousel-controls">
+                <button class="control-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-24 bg-dark-bg-luxe relative overflow-hidden">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-extrabold mb-6 leading-tight text-black text-reveal" style="color:#000">
-                    ĐỘI NGŨ PHÁT TRIỂN
-                </h2>
-                <p class="text-xl font-semibold text-black text-reveal aos-init aos-animate" style="color:#000" data-aos="fade-up" data-aos-delay="200">
-                    Gồm các thành viên sáng tạo và đầy nhiệt huyết!
-                </p>
+    <!-- Team Section -->
+    <div class="container">
+        <h2 class="section-title">LỘ TRÌNH PHÁT TRIỂN</h2>
+        <p class="section-subtitle">Hành trình mang Gánh Rong đến với mọi người</p>
+
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <h3>Q4 2024</h3>
+                    <p>Khởi động dự án & Xây dựng ý tưởng</p>
+                </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="100">
-                    <img src="images/Asset1.png" alt="Thành viên 1" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
-                    <div class="font-semibold text-lg mb-1">Hà Xuân Lĩnh</div>
-                    <div class="text-text-secondary text-sm mb-2">Trưởng dự án</div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-content">
+                    <h3>Q1 2025</h3>
+                    <p>Ra mắt bản Alpha Test & Nhận phản hồi</p>
                 </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="200">
-                    <img src="images/Asset2.png" alt="Thành viên 2" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
-                    <div class="font-semibold text-lg mb-1">Nguyễn Văn Hiếu</div>
-                    <div class="text-text-secondary text-sm mb-2">Trưởng Đội Thiết Kế</div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-content">
+                    <h3>Q2 2025</h3>
+                    <p>Mở đăng ký trước & Sự kiện cộng đồng</p>
                 </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="300">
-                    <img src="images/Asset3.png" alt="Thành viên 3" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
-                    <div class="font-semibold text-lg mb-1">Nguyễn Bá Hoàng</div>
-                    <div class="text-text-secondary text-sm mb-2">Lập Trình Game</div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="timeline-content">
+                    <h3>Q3 2025</h3>
+                    <p>Chính thức phát hành (Open Beta)</p>
                 </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="400">
-                    <img src="images/Asset4.png" alt="Thành viên 4" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
-                    <div class="font-semibold text-lg mb-1">Phùng Tấn Khang</div>
-                    <div class="text-text-secondary text-sm mb-2">Thiết kế 3D</div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="500">
-                    <img src="images/Asset5.png" alt="Thành viên 5" class="w-24 h-24 rounded-full mb-4 border-4 border-blue-vibrant">
-                    <div class="font-semibold text-lg mb-1">Cao Hoài Bảo</div>
-                    <div class="text-text-secondary text-sm mb-2">Thiết kế 3D</div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="600">
-                    <img src="images/Asset6.png" alt="Thành viên 6" class="w-24 h-24 rounded-full mb-4 border-4 border-orange-vibrant">
-                    <div class="font-semibold text-lg mb-1">Nguyễn Thị Kim Loan</div>
-                    <div class="text-text-secondary text-sm mb-2">Thiết kế 3D</div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="700">
-                    <img src="images/Asset7.png" alt="Thành viên 7" class="w-24 h-24 rounded-full mb-4 border-4 border-purple-luxe">
-                    <div class="font-semibold text-lg mb-1">Châu Thị Tuyết Sương</div>
-                    <div class="text-text-secondary text-sm mb-2">Thiết kế 3D</div>
-                </div>
-                <div class="neo-brutal-card p-6 rounded-lg shadow-md flex flex-col items-center aos-init aos-animate" style="background-color: #fdfaef;" data-aos="fade-up" data-aos-delay="800">
-                    <img src="images/Asset8.png" alt="Thành viên 8" class="w-24 h-24 rounded-full mb-4 border-4 border-green-success">
-                    <div class="font-semibold text-lg mb-1">Nguyễn Thị Như Phượng</div>
-                    <div class="text-text-secondary text-sm mb-2">Thiết kế 2D</div>
-                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Fixed VTC Logo Button -->
+    <a href="#" class="fixed-logo-btn">
+        <img src="images/logo-vtc-academy-white.png" alt="VTC Academy">
+    </a>
+
+    <!-- Pre-register Form -->
+    <section id="pre-register" class="register-section">
+        <div class="container">
+            <div class="register-box" data-aos="zoom-in">
+                <h2 class="section-title">ĐĂNG KÝ TRƯỚC</h2>
+                <p class="register-desc">Điền thông tin để nhận thông báo khi game ra mắt và nhận quà độc quyền!</p>
+
+                <form id="preregister-form" class="register-form">
+                    <div class="form-group">
+                        <input type="text" id="name-prereg" placeholder="Tên của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email-prereg" placeholder="Email của bạn" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">GỬI ĐĂNG KÝ</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-dark-bg-luxe py-10 relative text-dark-text-main">
-        <div class="absolute inset-0 bg-biomorphic-noise z-0"></div>
-        <div class="container relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-dark-text-main">
-            <div class="flex flex-col items-center md:items-start text-center md:text-left">
-                <a href="#" class="flex items-center text-3xl font-bold tracking-tight text-dark-text-main mb-4 group">
-                    <img src="images/logo.jpg" alt="Logo Gánh Rong" class="w-10 h-10 mr-2 rounded-full border-2 border-blue-vibrant">
-                    <span class="gradient-text-footer" style="background: linear-gradient(45deg, var(--color-blue-vibrant), var(--color-orange-vibrant)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">GÁNH RONG</span>
-                </a>
-                <p class="text-dark-text-secondary text-sm">Tiếp nối hành trình, ký ức sống động.</p>
-                <div class="mt-6 flex space-x-4">
-                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-dark-text-main hover:text-blue-vibrant transition-colors text-2xl magnetic-hover" aria-label="Discord"><i class="fab fa-discord"></i></a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/Logo.png" alt="Gánh Rong Logo">
+                    <h3>GÁNH RONG</h3>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Chính sách bảo mật</a>
+                    <a href="#">Điều khoản sử dụng</a>
+                    <a href="#">Liên hệ</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
-            <div class="text-center md:text-left mt-8 md:mt-0">
-                <h3 class="text-xl font-bold mb-4 text-dark-text-main">LIÊN KẾT NHANH</h3>
-                <ul class="space-y-2">
-                    <li><a href="#about" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Về Gánh Rong</a></li>
-                    <li><a href="#features" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Tính Năng Game</a></li>
-                    <li><a href="#gallery" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Thư Viện Ảnh</a></li>
-                    <li><a href="#pre-register" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Đăng Ký Trước</a></li>
-                    <li><a href="#faq" class="text-dark-text-secondary hover:text-blue-vibrant transition-colors magnetic-hover">Hỗ Trợ & FAQ</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gánh Rong Project. All rights reserved.</p>
             </div>
-            <div class="text-center md:text-left mt-8 md:mt-0">
-                <h3 class="text-xl font-bold mb-4 text-dark-text-main">LIÊN HỆ</h3>
-                <p class="text-dark-text-secondary mb-2"><i class="fas fa-envelope mr-2 text-blue-vibrant"></i> contact@ganhronggame.vn</p>
-                <p class="text-dark-text-secondary mb-2"><i class="fas fa-phone mr-2 text-blue-vibrant"></i> +84 123 456 789</p>
-                <p class="text-dark-text-secondary"><i class="fas fa-map-marker-alt mr-2 text-blue-vibrant"></i> Đà Nẵng, Việt Nam</p>
-            </div>
-        </div>
-        <div class="mt-10 pt-6 border-t border-gray-700 text-center text-sm text-dark-text-secondary">
-            © 2025 Gánh Rong. Zon Dev Làm Game.
         </div>
     </footer>
 
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close">&times;</span>
+            <div class="video-container">
+                <iframe id="youtube-player" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/aos.js"></script>
-    <audio id="bg-music" src="audio/bg-music.mp3"></audio>
-    <audio id="bg-music-2" src="audio/windviewhill.mp3"></audio>
+    <script src="js/preregister.js"></script>
+    <script src="js/main-new.js"></script>
     <script>
-        AOS.init({ duration: 1000, easing: 'ease-out-cubic', once: true, mirror: false });
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('mobile-menu-open');
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => { mobileMenu.style.opacity = '1'; }, 10);
-        });
-        closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenu.style.opacity = '0';
-            setTimeout(() => { mobileMenu.classList.remove('mobile-menu-open'); mobileMenu.classList.add('hidden'); }, 300);
-        });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if (mobileMenu.classList.contains('mobile-menu-open')) {
-                    mobileMenu.style.opacity = '0';
-                    setTimeout(() => { mobileMenu.classList.remove('mobile-menu-open'); mobileMenu.classList.add('hidden'); }, 300);
-                }
-                if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
-            });
-        });
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                button.ariaExpanded = button.ariaExpanded === 'true' ? 'false' : 'true';
-                if (accordionContent.style.maxHeight) {
-                    accordionContent.style.maxHeight = null; icon.classList.remove('rotate-180');
-                } else {
-                    document.querySelectorAll('.accordion-content').forEach(content => {
-                        content.style.maxHeight = null; content.previousElementSibling.querySelector('i').classList.remove('rotate-180');
-                    });
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px"; icon.classList.add('rotate-180');
-                }
-            });
-        });
-        const heroBg = document.querySelector('#hero > div:nth-child(2)');
-        window.addEventListener('scroll', () => {
-            if (heroBg) { heroBg.style.transform = `translateY(${window.pageYOffset * 0.2}px)`; }
-        });
-        
-        // --- TOGGLE ÂM THANH SVG + AUTO PLAY ---
-        const soundToggle = document.getElementById('sound-toggle');
-        const soundOn = document.getElementById('sound-on');
-        const soundOff = document.getElementById('sound-off');
-        const bgMusic = document.getElementById('bg-music');
-        const bgMusic2 = document.getElementById('bg-music-2');
-        
-        // Playlist và quản lý nhạc
-        const playlist = [bgMusic, bgMusic2];
-        let currentTrackIndex = 0;
-        let currentAudio = null;
-        
-        // Các biến này sẽ reset về giá trị ban đầu mỗi lần reload trang
-        let isPlaying = false; // Mặc định tắt
-        let hasReachedAbout = false; // Kiểm tra đã đến phần About lần đầu chưa (chỉ trong phiên này)
-        let musicInitialized = false; // Kiểm tra đã khởi tạo nhạc chưa (chỉ trong phiên này)
-        
-        function updateSoundIcon() {
-            if (isPlaying) {
-                soundOn.classList.remove('hidden');
-                soundOff.classList.add('hidden');
-            } else {
-                soundOn.classList.add('hidden');
-                soundOff.classList.remove('hidden');
-            }
-        }
-        
-        // Hàm chọn bài ngẫu nhiên
-        function getRandomTrack() {
-            const randomIndex = Math.floor(Math.random() * playlist.length);
-            return { track: playlist[randomIndex], index: randomIndex };
-        }
-        
-        // Hàm chuyển bài tiếp theo
-        function playNextTrack() {
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-            }
-            
-            // Chọn bài tiếp theo (không trùng bài hiện tại nếu có nhiều hơn 1 bài)
-            let nextIndex;
-            if (playlist.length > 1) {
-                do {
-                    nextIndex = Math.floor(Math.random() * playlist.length);
-                } while (nextIndex === currentTrackIndex);
-            } else {
-                nextIndex = 0;
-            }
-            
-            currentTrackIndex = nextIndex;
-            currentAudio = playlist[currentTrackIndex];
-            currentAudio.volume = 0.5;
-            
-            if (isPlaying) {
-                currentAudio.play().catch(() => {
-                    isPlaying = false;
-                    updateSoundIcon();
-                });
-            }
-        }
-        
-        // Hàm khởi tạo nhạc lần đầu trong phiên này
-        function initMusic() {
-            if (!musicInitialized) {
-                // Chọn bài ngẫu nhiên lần đầu
-                const randomChoice = getRandomTrack();
-                currentAudio = randomChoice.track;
-                currentTrackIndex = randomChoice.index;
-                
-                currentAudio.volume = 0.5;
-                currentAudio.play().then(() => {
-                    isPlaying = true;
-                    updateSoundIcon();
-                }).catch(() => {
-                    isPlaying = false;
-                    updateSoundIcon();
-                });
-                
-                // Lắng nghe sự kiện kết thúc bài để chuyển bài tiếp theo
-                playlist.forEach(audio => {
-                    audio.addEventListener('ended', () => {
-                        if (isPlaying) {
-                            playNextTrack();
-                        }
-                    });
-                });
-                
-                musicInitialized = true;
-            }
-        }
-        
-        // Hàm kiểm tra khi đến phần About
-        function checkAboutSection() {
-            if (!hasReachedAbout) {
-                const aboutSection = document.getElementById('about');
-                if (aboutSection) {
-                    const rect = aboutSection.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                        hasReachedAbout = true;
-                        initMusic();
-                    }
-                }
-            }
-        }
-        
-        // Lắng nghe scroll để kiểm tra phần About
-        window.addEventListener('scroll', checkAboutSection);
-        
-        // Lắng nghe click vào link "Về Game"
-        document.querySelectorAll('a[href="#about"]').forEach(link => {
-            link.addEventListener('click', () => {
-                if (!hasReachedAbout) {
-                    hasReachedAbout = true;
-                    // Delay một chút để scroll animation hoàn thành
-                    setTimeout(initMusic, 500);
-                }
-            });
-        });
-        
-        soundToggle.addEventListener('click', () => {
-            if (!musicInitialized) {
-                initMusic();
-                return;
-            }
-            
-            if (isPlaying) {
-                // Dừng bài hiện tại
-                if (currentAudio) {
-                    currentAudio.pause();
-                }
-                isPlaying = false;
-            } else {
-                // Phát bài hiện tại hoặc chọn bài mới nếu chưa có
-                if (!currentAudio) {
-                    playNextTrack();
-                } else {
-                    currentAudio.currentTime = 0;
-                    currentAudio.play();
-                }
-                isPlaying = true;
-            }
-            updateSoundIcon();
-        });
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            // Mặc định hiển thị icon tắt âm thanh
-            isPlaying = false;
-            updateSoundIcon();
-        });
-        
-        // Loading Screen Logic
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loading-screen');
-            const progressBar = document.getElementById('loading-progress-bar');
-            const percentage = document.getElementById('loading-percentage');
-            
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress > 100) progress = 100;
-                
-                progressBar.style.width = progress + '%';
-                percentage.textContent = Math.round(progress) + '%';
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                            // Trigger logo fade-in animation after loading is complete
-                            const logo = document.querySelector('.logo-fade-in');
-                            if (logo) {
-                                setTimeout(() => {
-                                    logo.classList.add('animate');
-                                }, 300);
-                            }
-                        }, 800);
-                    }, 500);
-                }
-            }, 100);
-        });
-        // --- TOGGLE DARK/LIGHT SVG ---
-        const modeToggle = document.getElementById('mode-toggle');
-        const iconMoon = document.getElementById('icon-moon');
-        const iconSun = document.getElementById('icon-sun');
-        let isDark = false;
-        function setMode(dark) {
-            if (dark) {
-                document.body.classList.add('bg-dark-bg-luxe');
-                document.body.classList.remove('bg-white');
-                document.body.classList.add('text-dark-text-main');
-                document.body.classList.remove('text-dark-on-light-contrast');
-                document.body.style.backgroundColor = '#080C14';
-            } else {
-                document.body.classList.remove('bg-dark-bg-luxe');
-                document.body.classList.add('bg-white');
-                document.body.classList.remove('text-dark-text-main');
-                document.body.classList.add('text-dark-on-light-contrast');
-                document.body.style.backgroundColor = '#fdfaef';
-            }
-        }
-        modeToggle.addEventListener('click', () => {
-            isDark = !isDark;
-            setMode(isDark);
-        });
-        // --- BACK TO TOP ---
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        AOS.init({
+            duration: 1000,
+            once: true
         });
     </script>
+</body>
 
-
-                <div id="install-container" style="display: none;">
-                    <button id="install-btn" class="install-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13 5v6h1.17L12 13.17 9.83 11H11V5h2m2-2H9v6H5l7 7 7-7h-4V3zm4 15H5v2h14v-2z"></path>
-                        </svg>
-                        <span>Cài đặt App</span>
-                    </button>
-                    
-                    <!-- Banner cài đặt cho iOS -->
-                    <div id="ios-install-banner" class="ios-banner" style="display: none;">
-                        <div class="ios-banner-content">
-                            <img src="images/logoganhrong.png" alt="App Icon" class="ios-icon">
-                            <div class="ios-text">
-                                <div class="ios-title">Cài đặt Tạo trang web</div>
-                                <div class="ios-subtitle">Nhấn <svg width="16" height="16" viewBox="0 0 24 24" fill="#007AFF"><path d="M16 1H8c-1.11 0-2 .89-2 2v14.01c0 1.11.89 2 2 2h1v-5h10v5h1c1.11 0 2-.89 2-2V3c0-1.11-.89-2-2-2zm1 10h-2V8l-3 3-3-3v3H7V6h2.5l2.5 2.5L14.5 6H17v5z"></path></svg> sau đó chọn "Thêm vào Màn hình chính"</div>
-                            </div>
-                            <button class="ios-close" onclick="document.getElementById('ios-install-banner').style.display='none'">✕</button>
-                        </div>
-                    </div>
-                </div>
-            
-                <script>
-                    (function() {
-                        let deferredPrompt;
-                        const installContainer = document.getElementById('install-container');
-                        const installBtn = document.getElementById('install-btn');
-                        const iosBanner = document.getElementById('ios-install-banner');
-                        
-                        // Detect iOS
-                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                        const isInStandaloneMode = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-                        
-                        // Nếu đã cài đặt thì không hiện button
-                        if (isInStandaloneMode) {
-                            return;
-                        }
-                        
-                        // Xử lý cho iOS
-                        if (isIOS) {
-                            // Check if Safari
-                            const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-                            
-                            if (isSafari && !window.navigator.standalone) {
-                                // Hiện banner hướng dẫn cho iOS sau 2 giây
-                                setTimeout(() => {
-                                    iosBanner.style.display = 'block';
-                                }, 2000);
-                                
-                                // Tự động ẩn sau 10 giây
-                                setTimeout(() => {
-                                    iosBanner.style.display = 'none';
-                                }, 12000);
-                            }
-                        } else {
-                            // Android/Desktop - Listen for install prompt
-                            window.addEventListener('beforeinstallprompt', (e) => {
-                                e.preventDefault();
-                                deferredPrompt = e;
-                                
-                                // Hiện button install
-                                installContainer.style.display = 'block';
-                                
-                                // Analytics (optional)
-                                console.log('Install prompt ready');
-                            });
-                            
-                            // Handle install button click
-                            installBtn.addEventListener('click', async () => {
-                                if (!deferredPrompt) {
-                                    // Fallback cho trường hợp không có prompt
-                                    showFallbackInstructions();
-                                    return;
-                                }
-                                
-                                // Hiện prompt install
-                                deferredPrompt.prompt();
-                                
-                                // Đợi user chọn
-                                const { outcome } = await deferredPrompt.userChoice;
-                                
-                                if (outcome === 'accepted') {
-                                    console.log('User accepted install');
-                                    showSuccessMessage();
-                                    installContainer.style.display = 'none';
-                                } else {
-                                    console.log('User dismissed install');
-                                }
-                                
-                                deferredPrompt = null;
-                            });
-                        }
-                        
-                        // Auto-trigger install sau 3 giây (cho Android)
-                        if (!isIOS && !isInStandaloneMode) {
-                            setTimeout(() => {
-                                if (deferredPrompt) {
-                                    // Hiện button với animation
-                                    installContainer.style.display = 'block';
-                                    
-                                    // Optional: auto-prompt sau 5 giây nữa
-                                    // setTimeout(() => {
-                                    //     installBtn.click();
-                                    // }, 5000);
-                                }
-                            }, 3000);
-                        }
-                        
-                        // Success message
-                        function showSuccessMessage() {
-                            const successDiv = document.createElement('div');
-                            successDiv.className = 'install-success';
-                            successDiv.innerHTML = '✓ Cài đặt thành công!';
-                            document.body.appendChild(successDiv);
-                            
-                            setTimeout(() => {
-                                successDiv.remove();
-                            }, 3000);
-                        }
-                        
-                        // Fallback instructions
-                        function showFallbackInstructions() {
-                            alert('Để cài đặt app:\n\n' +
-                                  'Chrome/Edge: Nhấn menu ⋮ → "Cài đặt ứng dụng"\n' +
-                                  'Safari: Nhấn Share → "Add to Home Screen"');
-                        }
-                        
-                        // Listen for app installed
-                        window.addEventListener('appinstalled', () => {
-                            console.log('App was installed');
-                            installContainer.style.display = 'none';
-                            showSuccessMessage();
-                        });
-                    })();
-                </script>
-            
-<script>
-(function() {
-  'use strict';
-  
-  // Avoid double tracking
-  if (window.__tracked) return;
-  window.__tracked = true;
-
-  // Generate session ID
-  const sessionId = Date.now() + Math.random().toString(36).substr(2, 9);
-
-  // Track page view
-  async function trackPageView() {
-    try {
-      // Get geo data from geojs.io
-      const geo = await fetch('https://get.geojs.io/v1/ip/geo.json')
-        .then(r => r.json())
-        .catch(() => ({}));
-
-      // Prepare tracking data
-      const trackingData = {
-        // Geo data (exact structure from geojs.io)
-        ip: geo.ip,
-        latitude: geo.latitude,
-        longitude: geo.longitude,
-        accuracy: geo.accuracy,
-        timezone: geo.timezone,
-        country: geo.country,
-        city: geo.city,
-        region: geo.region,
-        asn: geo.asn,
-        organization: geo.organization,
-        organization_name: geo.organization_name,
-        area_code: geo.area_code,
-        country_code: geo.country_code,
-        country_code3: geo.country_code3,
-        continent_code: geo.continent_code,
-        
-        // Page data
-        page_url: location.pathname + location.search,
-        page_title: document.title,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
-        
-        // Session & device
-        session_id: sessionId,
-        is_mobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
-        screen_resolution: screen.width + 'x' + screen.height,
-        language: navigator.language
-      };
-
-      // Send to server
-      const response = await fetch('/api/traffic/log', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify(trackingData),
-        credentials: 'same-origin'
-      });
-
-      if (response.ok) {
-        console.log('✅ Page tracked successfully');
-      } else {
-        console.log('❌ Tracking failed:', response.status);
-      }
-
-    } catch(error) {
-      console.log('❌ Tracking error:', error.message);
-    }
-  }
-
-  // Track when page is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', trackPageView);
-  } else {
-    // Page already loaded
-    setTimeout(trackPageView, 100);
-  }
-
-  // Track SPA navigation (for single page apps)
-  const originalPushState = history.pushState;
-  const originalReplaceState = history.replaceState;
-  
-  history.pushState = function() {
-    originalPushState.apply(history, arguments);
-    setTimeout(trackPageView, 200);
-  };
-  
-  history.replaceState = function() {
-    originalReplaceState.apply(history, arguments);
-    setTimeout(trackPageView, 200);
-  };
-  
-  window.addEventListener('popstate', () => {
-    setTimeout(trackPageView, 200);
-  });
-
-})();
-</script>
-                <div id="install-container" style="display: none;">
-                    <button id="install-btn" class="install-button">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13 5v6h1.17L12 13.17 9.83 11H11V5h2m2-2H9v6H5l7 7 7-7h-4V3zm4 15H5v2h14v-2z"></path>
-                        </svg>
-                        <span>Cài đặt App</span>
-                    </button>
-                    
-                    <!-- Banner cài đặt cho iOS -->
-                    <div id="ios-install-banner" class="ios-banner" style="display: none;">
-                        <div class="ios-banner-content">
-                            <img src="images/192.png" alt="App Icon" class="ios-icon">
-                            <div class="ios-text">
-                                <div class="ios-title">Cài đặt Tạo trang web</div>
-                                <div class="ios-subtitle">Nhấn <svg width="16" height="16" viewBox="0 0 24 24" fill="#007AFF"><path d="M16 1H8c-1.11 0-2 .89-2 2v14.01c0 1.11.89 2 2 2h1v-5h10v5h1c1.11 0 2-.89 2-2V3c0-1.11-.89-2-2-2zm1 10h-2V8l-3 3-3-3v3H7V6h2.5l2.5 2.5L14.5 6H17v5z"></path></svg> sau đó chọn "Thêm vào Màn hình chính"</div>
-                            </div>
-                            <button class="ios-close" onclick="document.getElementById('ios-install-banner').style.display='none'">✕</button>
-                        </div>
-                    </div>
-                </div>
-            
-                <script>
-                    (function() {
-                        let deferredPrompt;
-                        const installContainer = document.getElementById('install-container');
-                        const installBtn = document.getElementById('install-btn');
-                        const iosBanner = document.getElementById('ios-install-banner');
-                        
-                        // Detect iOS
-                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                        const isInStandaloneMode = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-                        
-                        // Nếu đã cài đặt thì không hiện button
-                        if (isInStandaloneMode) {
-                            return;
-                        }
-                        
-                        // Xử lý cho iOS
-                        if (isIOS) {
-                            // Check if Safari
-                            const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-                            
-                            if (isSafari && !window.navigator.standalone) {
-                                // Hiện banner hướng dẫn cho iOS sau 2 giây
-                                setTimeout(() => {
-                                    iosBanner.style.display = 'block';
-                                }, 2000);
-                                
-                                // Tự động ẩn sau 10 giây
-                                setTimeout(() => {
-                                    iosBanner.style.display = 'none';
-                                }, 12000);
-                            }
-                        } else {
-                            // Android/Desktop - Listen for install prompt
-                            window.addEventListener('beforeinstallprompt', (e) => {
-                                e.preventDefault();
-                                deferredPrompt = e;
-                                
-                                // Hiện button install
-                                installContainer.style.display = 'block';
-                                
-                                // Analytics (optional)
-                                console.log('Install prompt ready');
-                            });
-                            
-                            // Handle install button click
-                            installBtn.addEventListener('click', async () => {
-                                if (!deferredPrompt) {
-                                    // Fallback cho trường hợp không có prompt
-                                    showFallbackInstructions();
-                                    return;
-                                }
-                                
-                                // Hiện prompt install
-                                deferredPrompt.prompt();
-                                
-                                // Đợi user chọn
-                                const { outcome } = await deferredPrompt.userChoice;
-                                
-                                if (outcome === 'accepted') {
-                                    console.log('User accepted install');
-                                    showSuccessMessage();
-                                    installContainer.style.display = 'none';
-                                } else {
-                                    console.log('User dismissed install');
-                                }
-                                
-                                deferredPrompt = null;
-                            });
-                        }
-                        
-                        // Auto-trigger install sau 3 giây (cho Android)
-                        if (!isIOS && !isInStandaloneMode) {
-                            setTimeout(() => {
-                                if (deferredPrompt) {
-                                    // Hiện button với animation
-                                    installContainer.style.display = 'block';
-                                    
-                                    // Optional: auto-prompt sau 5 giây nữa
-                                    // setTimeout(() => {
-                                    //     installBtn.click();
-                                    // }, 5000);
-                                }
-                            }, 3000);
-                        }
-                        
-                        // Success message
-                        function showSuccessMessage() {
-                            const successDiv = document.createElement('div');
-                            successDiv.className = 'install-success';
-                            successDiv.innerHTML = '✓ Cài đặt thành công!';
-                            document.body.appendChild(successDiv);
-                            
-                            setTimeout(() => {
-                                successDiv.remove();
-                            }, 3000);
-                        }
-                        
-                        // Fallback instructions
-                        function showFallbackInstructions() {
-                            alert('Để cài đặt app:\n\n' +
-                                  'Chrome/Edge: Nhấn menu ⋮ → "Cài đặt ứng dụng"\n' +
-                                  'Safari: Nhấn Share → "Add to Home Screen"');
-                        }
-                        
-                        // Listen for app installed
-                        window.addEventListener('appinstalled', () => {
-                            console.log('App was installed');
-                            installContainer.style.display = 'none';
-                            showSuccessMessage();
-                        });
-                    })();
-                </script>
-            
-<script>
-(function() {
-  'use strict';
-  
-  // Avoid double tracking
-  if (window.__tracked) return;
-  window.__tracked = true;
-
-  // Generate session ID
-  const sessionId = Date.now() + Math.random().toString(36).substr(2, 9);
-
-  // Track page view
-  async function trackPageView() {
-    try {
-      // Get geo data from geojs.io
-      const geo = await fetch('https://get.geojs.io/v1/ip/geo.json')
-        .then(r => r.json())
-        .catch(() => ({}));
-
-      // Prepare tracking data
-      const trackingData = {
-        // Geo data (exact structure from geojs.io)
-        ip: geo.ip,
-        latitude: geo.latitude,
-        longitude: geo.longitude,
-        accuracy: geo.accuracy,
-        timezone: geo.timezone,
-        country: geo.country,
-        city: geo.city,
-        region: geo.region,
-        asn: geo.asn,
-        organization: geo.organization,
-        organization_name: geo.organization_name,
-        area_code: geo.area_code,
-        country_code: geo.country_code,
-        country_code3: geo.country_code3,
-        continent_code: geo.continent_code,
-        
-        // Page data
-        page_url: location.pathname + location.search,
-        page_title: document.title,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
-        
-        // Session & device
-        session_id: sessionId,
-        is_mobile: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent),
-        screen_resolution: screen.width + 'x' + screen.height,
-        language: navigator.language
-      };
-
-      // Send to server
-      const response = await fetch('/api/traffic/log', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify(trackingData),
-        credentials: 'same-origin'
-      });
-
-      if (response.ok) {
-        console.log('✅ Page tracked successfully');
-      } else {
-        console.log('❌ Tracking failed:', response.status);
-      }
-
-    } catch(error) {
-      console.log('❌ Tracking error:', error.message);
-    }
-  }
-
-  // Track when page is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', trackPageView);
-  } else {
-    // Page already loaded
-    setTimeout(trackPageView, 100);
-  }
-
-  // Track SPA navigation (for single page apps)
-  const originalPushState = history.pushState;
-  const originalReplaceState = history.replaceState;
-  
-  history.pushState = function() {
-    originalPushState.apply(history, arguments);
-    setTimeout(trackPageView, 200);
-  };
-  
-  history.replaceState = function() {
-    originalReplaceState.apply(history, arguments);
-    setTimeout(trackPageView, 200);
-  };
-  
-  window.addEventListener('popstate', () => {
-    setTimeout(trackPageView, 200);
-  });
-
-})();
-</script>
-<script>
-function showRegisterSuccess() {
-    const successDiv = document.createElement('div');
-    successDiv.className = 'install-success';
-    successDiv.innerHTML = '✓ Bạn đã đăng ký thành công!';
-    document.body.appendChild(successDiv);
-    setTimeout(() => {
-        successDiv.remove();
-    }, 3000);
-}
-</script>
-<script src="js/preregister.js"></script>
-</body></html>
+</html>

@@ -10,9 +10,9 @@ console.log('🚀 Preregister script loading...');
 console.log('📊 Supabase URL:', SUPABASE_URL);
 
 // Override animation cố định ngay lập tức
-(function() {
+(function () {
     'use strict';
-    
+
     function overrideCount() {
         const preregCountElement = document.getElementById('prereg-count');
         if (preregCountElement) {
@@ -22,10 +22,10 @@ console.log('📊 Supabase URL:', SUPABASE_URL);
             console.log('❌ Element prereg-count not found');
         }
     }
-    
+
     // Chỉ override khi DOM ready
     document.addEventListener('DOMContentLoaded', overrideCount);
-    
+
     // Override sau khi DOM load xong
     setTimeout(overrideCount, 100);
     setTimeout(overrideCount, 500);
@@ -39,20 +39,20 @@ let currentCount = 0;
 async function updatePreregisterCount() {
     try {
         console.log('📡 Fetching preregister count from database...');
-        
+
         // Kiểm tra element có tồn tại không
         const preregCountElement = document.getElementById('prereg-count');
         if (!preregCountElement) {
             console.error('❌ Element prereg-count not found in updatePreregisterCount');
             return;
         }
-        
+
         // Thử cả 2 cách: function và direct query
         const functionUrl = `${SUPABASE_URL}/rest/v1/rpc/count_preregister`;
         const directUrl = `${SUPABASE_URL}/rest/v1/${TABLE}?select=count`;
-        
+
         console.log('🔗 Function URL:', functionUrl);
-        
+
         const res = await fetch(functionUrl, {
             method: 'POST',
             headers: {
@@ -61,12 +61,12 @@ async function updatePreregisterCount() {
                 'Content-Type': 'application/json'
             }
         });
-        
+
         console.log('📊 Response status:', res.status);
-        
+
         if (!res.ok) {
             console.error('❌ Failed to fetch count:', res.status, res.statusText);
-            
+
             // Thử cách khác: direct query
             console.log('🔄 Trying direct query...');
             const directRes = await fetch(directUrl, {
@@ -77,7 +77,7 @@ async function updatePreregisterCount() {
                     'Content-Type': 'application/json'
                 }
             });
-            
+
             if (directRes.ok) {
                 const directData = await directRes.json();
                 console.log('📊 Direct query data:', directData);
@@ -85,18 +85,18 @@ async function updatePreregisterCount() {
                 updateCountDisplay(count);
                 return;
             }
-            
+
             // Fallback: hiển thị 0 nếu API lỗi
             updateCountDisplay(0);
             return;
         }
-        
+
         const data = await res.json();
         console.log('📊 Response data:', data);
         console.log('📊 Data type:', typeof data);
         console.log('📊 Is array:', Array.isArray(data));
         console.log('📊 Data length:', data.length);
-        
+
         // Xử lý response data - có thể là array hoặc object
         let count = 0;
         if (Array.isArray(data) && data.length > 0) {
@@ -107,7 +107,7 @@ async function updatePreregisterCount() {
             count = data.count || 0;
             console.log('📊 Count from object:', count);
         }
-        
+
         console.log('✅ Final Database count:', count);
         updateCountDisplay(count);
     } catch (e) {
@@ -124,45 +124,71 @@ function updateCountDisplay(count) {
         console.error('❌ Element prereg-count not found');
         return;
     }
-    
+
     const oldCount = currentCount;
     currentCount = count;
-    
+
     console.log(`🔄 Updating count from ${oldCount} to ${count}`);
-    
+
     // Animation đếm số
     animateCount(oldCount, count, el);
+
+    // Update Milestone Progress Bar
+    updateMilestoneProgress(count);
+}
+
+function updateMilestoneProgress(count) {
+    const progressBar = document.getElementById('milestone-progress');
+    const points = document.querySelectorAll('.milestone-point');
+
+    if (!progressBar) return;
+
+    // Max target is 100,000
+    const maxTarget = 100000;
+    const percentage = Math.min((count / maxTarget) * 100, 100);
+
+    progressBar.style.width = `${percentage}%`;
+
+    // Update active state for points
+    points.forEach(point => {
+        const target = parseInt(point.getAttribute('data-target'));
+        if (count >= target) {
+            point.classList.add('reached');
+        } else {
+            point.classList.remove('reached');
+        }
+    });
 }
 
 // Animation đếm số từ giá trị cũ đến giá trị mới
 function animateCount(from, to, element) {
     if (from === to) return;
-    
+
     const duration = 1000; // 1 giây
     const startTime = performance.now();
-    
+
     function updateCount(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
+
         // Easing function (ease-out)
         const easeOut = 1 - Math.pow(1 - progress, 3);
         const currentValue = Math.floor(from + (to - from) * easeOut);
-        
+
         element.textContent = currentValue.toLocaleString('en-US');
-        
+
         if (progress < 1) {
             requestAnimationFrame(updateCount);
         }
     }
-    
+
     requestAnimationFrame(updateCount);
 }
 
 // Setup real-time subscription với polling
 function setupRealtimeSubscription() {
     console.log('⚙️ Setting up real-time subscription...');
-    
+
     // Test element trước khi fetch data
     const preregCountElement = document.getElementById('prereg-count');
     if (preregCountElement) {
@@ -172,10 +198,10 @@ function setupRealtimeSubscription() {
     } else {
         console.error('❌ Element prereg-count not found in setupRealtimeSubscription');
     }
-    
+
     // Cập nhật ngay lập tức khi load trang
     updatePreregisterCount();
-    
+
     // Polling mỗi 3 giây để cập nhật real-time
     setInterval(() => {
         console.log('🔄 Polling for updates...');
@@ -186,14 +212,14 @@ function setupRealtimeSubscription() {
 // Khởi tạo khi trang load
 window.addEventListener('DOMContentLoaded', () => {
     console.log('📄 DOM loaded - starting preregister setup');
-    
+
     // Override count trước khi setup
     const preregCountElement = document.getElementById('prereg-count');
     if (preregCountElement) {
         preregCountElement.textContent = '0';
         console.log('✅ Set initial count to 0');
     }
-    
+
     // Setup real-time subscription
     setupRealtimeSubscription();
 });
@@ -215,46 +241,46 @@ if (document.readyState === 'loading') {
 // Form handling
 if (form) {
     console.log('📝 Form found, setting up event listener');
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
         console.log('📝 Form submitted');
-        
-    const name = document.getElementById('name-prereg').value.trim();
-    const email = document.getElementById('email-prereg').value.trim().toLowerCase();
-        
+
+        const name = document.getElementById('name-prereg').value.trim();
+        const email = document.getElementById('email-prereg').value.trim().toLowerCase();
+
         console.log('📝 Form data:', { name, email });
-        
+
         if (!name || !email) {
             console.log('❌ Form validation failed');
             return;
         }
 
-    // Kiểm tra email đã tồn tại chưa
-    const { exists, error: checkError } = await checkEmailExists(email);
-    if (checkError) {
+        // Kiểm tra email đã tồn tại chưa
+        const { exists, error: checkError } = await checkEmailExists(email);
+        if (checkError) {
             console.log('❌ Email check error');
-        showMessage('Đã có lỗi xảy ra, vui lòng thử lại sau!', false);
-        return;
-    }
-    if (exists) {
+            showMessage('Đã có lỗi xảy ra, vui lòng thử lại sau!', false);
+            return;
+        }
+        if (exists) {
             console.log('❌ Email already exists');
-        showMessage('Email này đã được đăng ký trước!', false);
-        return;
-    }
+            showMessage('Email này đã được đăng ký trước!', false);
+            return;
+        }
 
-    // Gửi dữ liệu lên Supabase
+        // Gửi dữ liệu lên Supabase
         console.log('📤 Sending data to Supabase...');
-    const { error } = await insertPreregister(name, email);
-    if (error) {
+        const { error } = await insertPreregister(name, email);
+        if (error) {
             console.log('❌ Insert failed');
-        showMessage('Đăng ký thất bại, vui lòng thử lại!', false);
-    } else {
+            showMessage('Đăng ký thất bại, vui lòng thử lại!', false);
+        } else {
             console.log('✅ Insert successful');
-        showMessage('Đăng ký thành công! Cảm ơn bạn.', true);
-        form.reset();
-        updatePreregisterCount();
-    }
-});
+            showMessage('Đăng ký thành công! Cảm ơn bạn.', true);
+            form.reset();
+            updatePreregisterCount();
+        }
+    });
 } else {
     console.error('❌ Form not found');
 }
@@ -270,9 +296,9 @@ async function checkEmailExists(email) {
                 'Accept': 'application/json'
             }
         });
-        
+
         console.log('🔍 Email check response:', res.status);
-        
+
         if (!res.ok) return { exists: false, error: true };
         const data = await res.json();
         console.log('🔍 Email check data:', data);
@@ -296,15 +322,15 @@ async function insertPreregister(name, email) {
             },
             body: JSON.stringify({ name, email })
         });
-        
+
         console.log('📤 Insert response:', res.status);
-        
+
         if (!res.ok) {
             const errorText = await res.text();
             console.error('❌ Insert error:', errorText);
             return { error: true };
         }
-        
+
         const data = await res.json();
         console.log('✅ Insert successful:', data);
         return { error: false };
