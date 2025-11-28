@@ -366,4 +366,85 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start auto-slide
         startAutoSlide();
     }
+
+    // ===== Gallery Album Slider =====
+    const gallerySection = document.querySelector('.gallery-section');
+    if (gallerySection) {
+        const gallerySlides = document.querySelectorAll('.gallery-slide');
+        const prevGalleryBtn = document.querySelector('.prev-gallery');
+        const nextGalleryBtn = document.querySelector('.next-gallery');
+        const galleryCurrentNum = document.getElementById('gallery-current');
+        let currentGalleryIndex = 0;
+        let galleryInterval;
+        const galleryAutoDelay = 5000;
+
+        function updateGallery(index) {
+            // Wrap around
+            if (index >= gallerySlides.length) {
+                currentGalleryIndex = 0;
+            } else if (index < 0) {
+                currentGalleryIndex = gallerySlides.length - 1;
+            } else {
+                currentGalleryIndex = index;
+            }
+
+            // Update slides
+            gallerySlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentGalleryIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update counter
+            if (galleryCurrentNum) {
+                galleryCurrentNum.textContent = String(currentGalleryIndex + 1).padStart(2, '0');
+            }
+        }
+
+        function nextGallery() {
+            updateGallery(currentGalleryIndex + 1);
+        }
+
+        function prevGallery() {
+            updateGallery(currentGalleryIndex - 1);
+        }
+
+        function startGalleryAuto() {
+            galleryInterval = setInterval(nextGallery, galleryAutoDelay);
+        }
+
+        function stopGalleryAuto() {
+            clearInterval(galleryInterval);
+        }
+
+        function resetGalleryAuto() {
+            stopGalleryAuto();
+            startGalleryAuto();
+        }
+
+        if (prevGalleryBtn) {
+            prevGalleryBtn.addEventListener('click', () => {
+                prevGallery();
+                resetGalleryAuto();
+            });
+        }
+
+        if (nextGalleryBtn) {
+            nextGalleryBtn.addEventListener('click', () => {
+                nextGallery();
+                resetGalleryAuto();
+            });
+        }
+
+        // Auto slide gallery
+        startGalleryAuto();
+
+        // Pause on hover
+        const galleryFrame = document.querySelector('.gallery-frame');
+        if (galleryFrame) {
+            galleryFrame.addEventListener('mouseenter', stopGalleryAuto);
+            galleryFrame.addEventListener('mouseleave', startGalleryAuto);
+        }
+    }
 });
