@@ -78,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== Character Showcase (New Design) =====
     const characterShowcase = document.querySelector('.character-showcase');
     if (characterShowcase) {
-        const charThumbs = document.querySelectorAll('.char-thumb');
-        const charImages = document.querySelectorAll('.char-image');
         const prevCharBtn = document.querySelector('.prev-char');
         const nextCharBtn = document.querySelector('.next-char');
         const charNameEl = document.getElementById('char-name');
@@ -90,26 +88,74 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentCharIndex = 0;
         
         // Character Data
+        // To add a new character, simply add a new object to this array with the following properties:
+        // - name: Character's name
+        // - quote: Character's quote
+        // - role: Character's role/title
+        // - description: Character's description
+        // - thumbnail: Path to thumbnail image (displayed in the selector)
+        // - image: Path to full character image (displayed in the main panel)
         const charactersData = [
             {
-                name: 'Bé An',
-                quote: '"Báo mới đây, tin nóng hổi!"',
-                role: 'Người Bán Báo',
-                description: 'Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông tin quý giá cho mọi người chơi. Cậu bé có thể đưa bạn những tin tức mới nhất về các sự kiện trong game.'
+                name: 'Hoàng SRO',
+                quote: '"Tuyển Sinh đê , học vtc nào!"',
+                role: 'VTC Academy Đà Nẵng',
+                description: 'Nhanh nhẹn, hoạt bát và biết tuốt mọi chuyện trong xóm. An là nguồn thông tin quý giá cho mọi người chơi. Cậu bé có thể đưa bạn những tin tức mới nhất về các sự kiện trong game.',
+                thumbnail: 'images/avatar.png',
+                image: 'images/Artboard4.png'
             },
             {
-                name: 'Chú Ba',
-                quote: '"Xe hỏng đưa đây, tui sửa cho!"',
-                role: 'Thợ Sửa Xe',
-                description: 'Trầm tính nhưng tốt bụng. Chú Ba luôn sẵn sàng giúp đỡ mọi người sửa chữa đồ đạc hỏng hóc. Chú có thể nâng cấp xe gánh của bạn để di chuyển nhanh hơn.'
+                name: 'Bảo Vệ',
+                quote: '"Chào em, thẻ học viên đâu nhỉ?"',
+                role: 'Cổng VTC Academy',
+                description: 'Chú bảo vệ thân thiện, luôn đứng gác trước cổng trường. Chú nhớ mặt tất cả học viên và thường hỏi thăm việc học tập của các em. Đôi khi chú còn giúp học viên trông xe và chỉ đường cho người lạ.',
+                thumbnail: 'images/emoji/11.png',
+                image: 'images/Artboard7.png'
             },
             {
-                name: 'Cô Tư',
-                quote: '"Chè ngon lắm nè, ăn đi con!"',
-                role: 'Bán Chè',
-                description: 'Gánh chè của cô Tư là nơi tụ tập của lũ trẻ trong xóm. Cô luôn có những câu chuyện ma mị để kể. Ghé thăm cô để học công thức chè bí truyền.'
+                name: 'Học Sinh',
+                quote: '"Hôm nay học Design, vui quá!"',
+                role: 'Học Viên VTC Academy',
+                description: 'Một học viên năng động và đam mê học hỏi tại VTC Academy. Bạn ấy thường xuyên chia sẻ kinh nghiệm học tập và giúp đỡ các bạn khác trong lớp. Sau giờ học, bạn hay ghé Chợ Cồn ăn vặt cùng bạn bè.',
+                thumbnail: 'images/emoji/10.png',
+                image: 'images/Artboard6.png'
             }
         ];
+        
+        // Initialize character elements dynamically
+        function initializeCharacters() {
+            const thumbnailsWrapper = document.querySelector('.thumbnails-wrapper');
+            const imageContainer = document.querySelector('.char-image-container');
+            
+            if (thumbnailsWrapper && imageContainer) {
+                // Clear existing content
+                thumbnailsWrapper.innerHTML = '';
+                imageContainer.innerHTML = '';
+                
+                // Generate thumbnails and images from data
+                charactersData.forEach((char, index) => {
+                    // Create thumbnail
+                    const thumb = document.createElement('div');
+                    thumb.className = 'char-thumb' + (index === 0 ? ' active' : '');
+                    thumb.setAttribute('data-char', index);
+                    thumb.innerHTML = `
+                        <img src="${char.thumbnail}" alt="${char.name}">
+                        <span class="thumb-name">${char.name}</span>
+                    `;
+                    thumbnailsWrapper.appendChild(thumb);
+                    
+                    // Create full image
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'char-image' + (index === 0 ? ' active' : '');
+                    imageDiv.setAttribute('data-char', index);
+                    imageDiv.innerHTML = `<img src="${char.image}" alt="${char.name}">`;
+                    imageContainer.appendChild(imageDiv);
+                });
+            }
+        }
+        
+        // Initialize characters before setting up interactions
+        initializeCharacters();
         
         function updateCharacter(index) {
             // Wrap around
@@ -129,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charRoleEl) charRoleEl.textContent = charData.role;
             if (charDescEl) charDescEl.textContent = charData.description;
             
+            // Re-query elements after initialization
+            const charThumbs = document.querySelectorAll('.char-thumb');
+            const charImages = document.querySelectorAll('.char-image');
+            
             // Update thumbnails
             charThumbs.forEach((thumb, i) => {
                 thumb.classList.remove('active');
@@ -146,12 +196,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Click on thumbnails
-        charThumbs.forEach((thumb, index) => {
-            thumb.addEventListener('click', () => {
-                updateCharacter(index);
+        // Click on thumbnails (delegated event)
+        const thumbnailsWrapper = document.querySelector('.thumbnails-wrapper');
+        if (thumbnailsWrapper) {
+            thumbnailsWrapper.addEventListener('click', (e) => {
+                const thumb = e.target.closest('.char-thumb');
+                if (thumb) {
+                    const index = parseInt(thumb.getAttribute('data-char'));
+                    updateCharacter(index);
+                }
             });
-        });
+        }
         
         // Navigation buttons
         if (prevCharBtn) {
