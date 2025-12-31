@@ -2,7 +2,7 @@
 
 ---
 
-![Gánh Rong Banner](https://raw.githubusercontent.com/anhhackta/GanhRong/main/images/logoganhrong.png)
+![Gánh Rong Banner](https://raw.githubusercontent.com/anhhackta/GanhRong/main/images/emoji/11.png)
 *(Lưu ý: Bạn có thể thay thế `assets/banner_game_gangrong.png` bằng đường dẫn đến một hình ảnh banner thực tế của game nếu có trong repo.)*
 
 Chào mừng bạn đến với trang GitHub của **Gánh Rong** – một dự án game đầy tâm huyết do đội ngũ 8-9 thành viên người Việt phát triển bằng Unity. Chúng tôi tự hào mang đến một trải nghiệm độc đáo, kết hợp nét văn hóa Việt Nam thân thuộc với phong cách đồ họa Chibi dễ thương, tạo nên một thế giới game sống động và gần gũi.
