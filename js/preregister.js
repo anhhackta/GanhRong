@@ -9,41 +9,37 @@ const TABLE = 'preregister';
 console.log('🚀 Preregister script loading...');
 console.log('📊 Supabase URL:', SUPABASE_URL);
 
-// Override animation cố định ngay lập tức
-(function () {
-    'use strict';
-
-    function overrideCount() {
-        const preregCountElement = document.getElementById('prereg-count');
-        if (preregCountElement) {
-            preregCountElement.textContent = '0';
-            console.log('✅ Overrode fixed animation, set count to 0');
-        } else {
-            console.log('❌ Element prereg-count not found');
-        }
-    }
-
-    // Chỉ override khi DOM ready
-    document.addEventListener('DOMContentLoaded', overrideCount);
-
-    // Override sau khi DOM load xong
-    setTimeout(overrideCount, 100);
-    setTimeout(overrideCount, 500);
-})();
-
-const form = document.getElementById('preregister-form');
+// Cache DOM elements
+let preregCountElement = null;
+let progressBarElement = null;
+let milestonePoints = null;
+let form = null;
 let realtimeSubscription = null;
 let currentCount = 0;
+let pollingInterval = null;
+
+// Initialize cached DOM elements
+function cacheDOMElements() {
+    preregCountElement = document.getElementById('prereg-count');
+    progressBarElement = document.getElementById('milestone-progress');
+    milestonePoints = document.querySelectorAll('.milestone-point');
+    form = document.getElementById('preregister-form');
+    
+    if (preregCountElement) {
+        preregCountElement.textContent = '0';
+        console.log('✅ DOM elements cached successfully');
+    } else {
+        console.error('❌ Required elements not found');
+    }
+}
 
 // Cập nhật số lượng đăng ký
 async function updatePreregisterCount() {
     try {
         console.log('📡 Fetching preregister count from database...');
 
-        // Kiểm tra element có tồn tại không
-        const preregCountElement = document.getElementById('prereg-count');
         if (!preregCountElement) {
-            console.error('❌ Element prereg-count not found in updatePreregisterCount');
+            console.error('❌ Cached element not available');
             return;
         }
 
@@ -119,9 +115,8 @@ async function updatePreregisterCount() {
 
 // Cập nhật hiển thị số lượng với animation
 function updateCountDisplay(count) {
-    const el = document.getElementById('prereg-count');
-    if (!el) {
-        console.error('❌ Element prereg-count not found');
+    if (!preregCountElement) {
+        console.error('❌ Cached element not available');
         return;
     }
 
@@ -130,33 +125,24 @@ function updateCountDisplay(count) {
 
     console.log(`🔄 Updating count from ${oldCount} to ${count}`);
 
-    // Animation đếm số
-    animateCount(oldCount, count, el);
-
-    // Update Milestone Progress Bar
+    // Animation đếm số và update milestone cùng lúc
+    animateCount(oldCount, count, preregCountElement);
     updateMilestoneProgress(count);
 }
 
 function updateMilestoneProgress(count) {
-    const progressBar = document.getElementById('milestone-progress');
-    const points = document.querySelectorAll('.milestone-point');
+    if (!progressBarElement || !milestonePoints) return;
 
-    if (!progressBar) return;
-
-    // Max target is 100,000
-    const maxTarget = 100000;
+    // Max target is 100 (assuming data-target values are 10, 50, 100)
+    const maxTarget = 100;
     const percentage = Math.min((count / maxTarget) * 100, 100);
 
-    progressBar.style.width = `${percentage}%`;
+    progressBarElement.style.width = `${percentage}%`;
 
     // Update active state for points
-    points.forEach(point => {
+    milestonePoints.forEach(point => {
         const target = parseInt(point.getAttribute('data-target'));
-        if (count >= target) {
-            point.classList.add('reached');
-        } else {
-            point.classList.remove('reached');
-        }
+        point.classList.toggle('reached', count >= target);
     });
 }
 
@@ -185,61 +171,62 @@ function animateCount(from, to, element) {
     requestAnimationFrame(updateCount);
 }
 
-// Setup real-time subscription với polling
+// Setup real-time subscription với polling tối ưu
 function setupRealtimeSubscription() {
     console.log('⚙️ Setting up real-time subscription...');
-
-    // Test element trước khi fetch data
-    const preregCountElement = document.getElementById('prereg-count');
-    if (preregCountElement) {
-        console.log('✅ Element found, current value:', preregCountElement.textContent);
-        // Set về 0 trước khi fetch
-        preregCountElement.textContent = '0';
-    } else {
-        console.error('❌ Element prereg-count not found in setupRealtimeSubscription');
-    }
 
     // Cập nhật ngay lập tức khi load trang
     updatePreregisterCount();
 
-    // Polling mỗi 3 giây để cập nhật real-time
-    setInterval(() => {
+    // Polling mỗi 5 giây (giảm tần suất để tối ưu performance)
+    if (pollingInterval) clearInterval(pollingInterval);
+    pollingInterval = setInterval(() => {
         console.log('🔄 Polling for updates...');
         updatePreregisterCount();
-    }, 3000);
+    }, 5000);
 }
 
-// Khởi tạo khi trang load
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('📄 DOM loaded - starting preregister setup');
-
-    // Override count trước khi setup
-    const preregCountElement = document.getElementById('prereg-count');
-    if (preregCountElement) {
-        preregCountElement.textContent = '0';
-        console.log('✅ Set initial count to 0');
+// Cleanup function khi trang unload
+function cleanup() {
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+        console.log('🧹 Cleaned up polling interval');
     }
+}
 
-    // Setup real-time subscription
-    setupRealtimeSubscription();
-});
+// Khởi tạo duy nhất khi trang load
+function initPreregister() {
+    console.log('📄 Initializing preregister system...');
+    
+    // Cache all DOM elements
+    cacheDOMElements();
+    
+    // Setup realtime updates
+    if (preregCountElement) {
+        setupRealtimeSubscription();
+    }
+    
+    // Setup form handler
+    setupFormHandler();
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', cleanup);
+}
 
-// Fallback nếu DOM đã load xong
+// Single event listener
 if (document.readyState === 'loading') {
-    // DOM đang loading, đã có event listener ở trên
+    document.addEventListener('DOMContentLoaded', initPreregister);
 } else {
-    // DOM đã load xong
-    console.log('📄 DOM already loaded - starting preregister setup');
-    const preregCountElement = document.getElementById('prereg-count');
-    if (preregCountElement) {
-        preregCountElement.textContent = '0';
-        console.log('✅ Set initial count to 0');
-    }
-    setupRealtimeSubscription();
+    initPreregister();
 }
 
-// Form handling
-if (form) {
+// Form handling function
+function setupFormHandler() {
+    if (!form) {
+        console.log('⚠️ Form not found');
+        return;
+    }
+    
     console.log('📝 Form found, setting up event listener');
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -281,10 +268,9 @@ if (form) {
             updatePreregisterCount();
         }
     });
-} else {
-    console.error('❌ Form not found');
 }
 
+// Helper functions
 async function checkEmailExists(email) {
     try {
         console.log('🔍 Checking email exists:', email);
@@ -343,17 +329,24 @@ async function insertPreregister(name, email) {
 function showMessage(msg, success) {
     const div = document.createElement('div');
     div.className = 'install-success';
-    div.style.background = success ? 'rgba(76, 175, 80, 0.95)' : 'rgba(220, 38, 38, 0.95)';
+    div.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        background: ${success ? 'rgba(76, 175, 80, 0.95)' : 'rgba(220, 38, 38, 0.95)'};
+    `;
     div.innerHTML = success ? `✓ ${msg}` : `✕ ${msg}`;
     document.body.appendChild(div);
-    setTimeout(() => div.remove(), 3000);
+    setTimeout(() => {
+        div.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => div.remove(), 300);
+    }, 3000);
 }
-
-// Cleanup khi trang bị đóng
-window.addEventListener('beforeunload', () => {
-    if (realtimeSubscription) {
-        realtimeSubscription.unsubscribe();
-    }
-});
 
 console.log('✅ Preregister script loaded successfully');

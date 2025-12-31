@@ -1,13 +1,126 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Loading Screen
+    // Loading Screen - Tối ưu thời gian chờ
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
+        // Giảm thời gian loading từ 2s xuống 1.2s
         setTimeout(() => {
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
-            }, 500);
-        }, 2000); // Show loading for 2 seconds
+            }, 400);
+        }, 1200);
+    }
+
+    // Download Dropdown Toggle
+    const downloadToggle = document.getElementById('download-toggle');
+    const downloadMenu = document.getElementById('download-menu');
+
+    if (downloadToggle && downloadMenu) {
+        downloadToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            downloadToggle.classList.toggle('active');
+            downloadMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!downloadToggle.contains(e.target) && !downloadMenu.contains(e.target)) {
+                downloadToggle.classList.remove('active');
+                downloadMenu.classList.remove('active');
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside menu
+        downloadMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // ===== Utility: Generic Slider Controller =====
+    // Giảm trùng lặp code bằng cách tạo slider controller chung
+    function createSliderController(config) {
+        const {
+            slides,
+            dots = null,
+            prevBtn,
+            nextBtn,
+            container,
+            autoDelay = 4000,
+            onSlideChange = null
+        } = config;
+
+        let currentIndex = 0;
+        let autoInterval = null;
+
+        function showSlide(index) {
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentIndex);
+            });
+
+            if (dots) {
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            if (onSlideChange) onSlideChange(currentIndex);
+        }
+
+        function next() { showSlide(currentIndex + 1); }
+        function prev() { showSlide(currentIndex - 1); }
+
+        function startAuto() {
+            if (autoInterval) clearInterval(autoInterval);
+            autoInterval = setInterval(next, autoDelay);
+        }
+
+        function stopAuto() {
+            if (autoInterval) clearInterval(autoInterval);
+        }
+
+        function resetAuto() {
+            stopAuto();
+            startAuto();
+        }
+
+        // Setup event listeners
+        if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+        if (dots) {
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => { showSlide(i); resetAuto(); });
+            });
+        }
+
+        if (container) {
+            container.addEventListener('mouseenter', stopAuto);
+            container.addEventListener('mouseleave', startAuto);
+
+            // Touch support
+            let touchStartX = 0;
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAuto();
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? next() : prev();
+                }
+                startAuto();
+            }, { passive: true });
+        }
+
+        startAuto();
+        return { showSlide, next, prev, stopAuto, startAuto };
     }
 
     // Header Scroll Effect
@@ -284,222 +397,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== Image Slider =====
+    // ===== Image Slider - Sử dụng utility function =====
     const imageSlider = document.querySelector('.image-slider');
     if (imageSlider) {
-        const slides = imageSlider.querySelectorAll('.slide');
-        const dots = imageSlider.querySelectorAll('.dot');
-        const prevArrow = imageSlider.querySelector('.prev-arrow');
-        const nextArrow = imageSlider.querySelector('.next-arrow');
-        let currentSlide = 0;
-        let slideInterval;
-        const autoSlideDelay = 4000; // 4 seconds
-
-        // Function to show specific slide
-        function showSlide(index) {
-            // Wrap around
-            if (index >= slides.length) {
-                currentSlide = 0;
-            } else if (index < 0) {
-                currentSlide = slides.length - 1;
-            } else {
-                currentSlide = index;
-            }
-
-            // Update slides
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === currentSlide) {
-                    slide.classList.add('active');
-                }
-            });
-
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                if (i === currentSlide) {
-                    dot.classList.add('active');
-                }
-            });
-        }
-
-        // Next slide
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        // Previous slide
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        // Start auto-slide
-        function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, autoSlideDelay);
-        }
-
-        // Stop auto-slide
-        function stopAutoSlide() {
-            clearInterval(slideInterval);
-        }
-
-        // Reset auto-slide (restart timer)
-        function resetAutoSlide() {
-            stopAutoSlide();
-            startAutoSlide();
-        }
-
-        // Event listeners for arrows
-        if (prevArrow) {
-            prevArrow.addEventListener('click', () => {
-                prevSlide();
-                resetAutoSlide();
-            });
-        }
-
-        if (nextArrow) {
-            nextArrow.addEventListener('click', () => {
-                nextSlide();
-                resetAutoSlide();
-            });
-        }
-
-        // Event listeners for dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-                resetAutoSlide();
-            });
+        createSliderController({
+            slides: imageSlider.querySelectorAll('.slide'),
+            dots: imageSlider.querySelectorAll('.dot'),
+            prevBtn: imageSlider.querySelector('.prev-arrow'),
+            nextBtn: imageSlider.querySelector('.next-arrow'),
+            container: imageSlider,
+            autoDelay: 4000
         });
-
-        // Pause auto-slide on hover
-        imageSlider.addEventListener('mouseenter', stopAutoSlide);
-        imageSlider.addEventListener('mouseleave', startAutoSlide);
-
-        // Touch/Swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        imageSlider.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            stopAutoSlide();
-        }, { passive: true });
-
-        imageSlider.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            startAutoSlide();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (diff > swipeThreshold) {
-                nextSlide(); // Swipe left
-            } else if (diff < -swipeThreshold) {
-                prevSlide(); // Swipe right
-            }
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            // Only if slider is in viewport
-            const rect = imageSlider.getBoundingClientRect();
-            const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-            
-            if (isInViewport) {
-                if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                    resetAutoSlide();
-                } else if (e.key === 'ArrowRight') {
-                    nextSlide();
-                    resetAutoSlide();
-                }
-            }
-        });
-
-        // Start auto-slide
-        startAutoSlide();
     }
 
-    // ===== Gallery Album Slider =====
+    // ===== Gallery Album Slider - Sử dụng utility function =====
     const gallerySection = document.querySelector('.gallery-section');
     if (gallerySection) {
-        const gallerySlides = document.querySelectorAll('.gallery-slide');
-        const prevGalleryBtn = document.querySelector('.prev-gallery');
-        const nextGalleryBtn = document.querySelector('.next-gallery');
         const galleryCurrentNum = document.getElementById('gallery-current');
-        let currentGalleryIndex = 0;
-        let galleryInterval;
-        const galleryAutoDelay = 5000;
-
-        function updateGallery(index) {
-            // Wrap around
-            if (index >= gallerySlides.length) {
-                currentGalleryIndex = 0;
-            } else if (index < 0) {
-                currentGalleryIndex = gallerySlides.length - 1;
-            } else {
-                currentGalleryIndex = index;
-            }
-
-            // Update slides
-            gallerySlides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === currentGalleryIndex) {
-                    slide.classList.add('active');
+        
+        createSliderController({
+            slides: document.querySelectorAll('.gallery-slide'),
+            prevBtn: document.querySelector('.prev-gallery'),
+            nextBtn: document.querySelector('.next-gallery'),
+            container: document.querySelector('.gallery-frame'),
+            autoDelay: 5000,
+            onSlideChange: (index) => {
+                if (galleryCurrentNum) {
+                    galleryCurrentNum.textContent = String(index + 1).padStart(2, '0');
                 }
-            });
-
-            // Update counter
-            if (galleryCurrentNum) {
-                galleryCurrentNum.textContent = String(currentGalleryIndex + 1).padStart(2, '0');
             }
-        }
-
-        function nextGallery() {
-            updateGallery(currentGalleryIndex + 1);
-        }
-
-        function prevGallery() {
-            updateGallery(currentGalleryIndex - 1);
-        }
-
-        function startGalleryAuto() {
-            galleryInterval = setInterval(nextGallery, galleryAutoDelay);
-        }
-
-        function stopGalleryAuto() {
-            clearInterval(galleryInterval);
-        }
-
-        function resetGalleryAuto() {
-            stopGalleryAuto();
-            startGalleryAuto();
-        }
-
-        if (prevGalleryBtn) {
-            prevGalleryBtn.addEventListener('click', () => {
-                prevGallery();
-                resetGalleryAuto();
-            });
-        }
-
-        if (nextGalleryBtn) {
-            nextGalleryBtn.addEventListener('click', () => {
-                nextGallery();
-                resetGalleryAuto();
-            });
-        }
-
-        // Auto slide gallery
-        startGalleryAuto();
-
-        // Pause on hover
-        const galleryFrame = document.querySelector('.gallery-frame');
-        if (galleryFrame) {
-            galleryFrame.addEventListener('mouseenter', stopGalleryAuto);
-            galleryFrame.addEventListener('mouseleave', startGalleryAuto);
-        }
+        });
     }
 });
