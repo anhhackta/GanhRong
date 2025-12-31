@@ -10,6 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000); // Show loading for 2 seconds
     }
 
+    // Download Dropdown Toggle
+    const downloadToggle = document.getElementById('download-toggle');
+    const downloadMenu = document.getElementById('download-menu');
+
+    if (downloadToggle && downloadMenu) {
+        downloadToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            downloadToggle.classList.toggle('active');
+            downloadMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!downloadToggle.contains(e.target) && !downloadMenu.contains(e.target)) {
+                downloadToggle.classList.remove('active');
+                downloadMenu.classList.remove('active');
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside menu
+        downloadMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
     // Header Scroll Effect
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {

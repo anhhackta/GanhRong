@@ -80,6 +80,108 @@ img {
     display: block;
 }
 
+/* Hero Download Row - Centers button below main CTA */
+.hero-download-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    transform: translateX(-50px);
+}
+
+/* Download Button with Dropdown */
+.download-btn-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: stretch;
+}
+
+.btn-download {
+    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    color: #000;
+    font-weight: 700;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding-right: 1.5rem;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 193, 7, 0.6);
+}
+
+.download-dropdown-toggle {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    border: none;
+    color: #000;
+    cursor: pointer;
+    padding: 0 1rem;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-left: 2px solid rgba(0, 0, 0, 0.1);
+    transition: var(--transition-fast);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-dropdown-toggle:hover {
+    background: linear-gradient(135deg, #F57C00 0%, #E65100 100%);
+}
+
+.download-dropdown-toggle.active {
+    background: linear-gradient(135deg, #F57C00 0%, #E65100 100%);
+}
+
+.download-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    border: var(--glass-border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-smooth);
+    z-index: 1000;
+}
+
+.download-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.download-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--color-text-main);
+    border-radius: 8px;
+    transition: var(--transition-fast);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.download-option:hover {
+    background: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    transform: translateX(5px);
+}
+
+.download-option i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
 /* Utility Classes */
 .container {
     max-width: 1200px;
